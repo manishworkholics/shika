@@ -1,0 +1,436 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lemon&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    line-height: normal;
+}
+
+a {
+    cursor: pointer;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+li {
+    list-style: none;
+}
+
+body {
+    background: #EFF7FF;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/*--------------------- Navbar-CSS --------------------*/
+
+.navbar-container {
+    background: #2065AE;
+    color: #fff;
+}
+
+.navbar-brand {
+    font-family: 'Lemon', serif;
+    font-size: 48px;
+    color: #fff;
+}
+
+.nav-link:hover {
+    color: #fff;
+    letter-spacing: 3px;
+}
+
+.nav-link {
+    color: #fff;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: normal;
+    margin: 0px 10px;
+    transition: .5s;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    outline: #d5e9f1;
+    border-color: #d5e9f1;
+}
+
+.table-card {
+    background: #dfecf8;
+    border-radius: 30px;
+}
+
+.table-card .table {
+    margin-bottom: 0;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    width: 100%;
+}
+
+.page-heading {
+    background: #d5e9f1;
+    padding: 10px;
+    font-size: 40px;
+    font-weight: 600;
+    line-height: normal;
+    letter-spacing: 1px;
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+.btn-info {
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+    color: #fff;
+    background-color: #2065AE;
+    border-radius: 50px;
+    padding: 7px 20px !important;
+}
+
+.btn-info:hover {
+    background-color: #EFF7FF;
+    border: 1px solid #2065AE !important;
+    color: #2065AE !important;
+}
+
+.btn span {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: normal;
+    margin-left: 5px;
+}
+
+.close {
+    padding: 0px 7px;
+}
+
+@media only screen and (max-width:600px) {
+    /* .navbar-collapse {
+        position: absolute;
+        top: 56px;
+        left: 0;
+        background: #f7f7f7;
+        width: 100%;
+        height: fit-content;
+        padding: 15px 20px;
+        border-radius: 0px 0px 20px 20px;
+        box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+        font-size: 18px;
+        font-weight: 500;
+    } */
+
+    .table-card .table {
+        width: max-content;
+    }
+
+    .table-card {
+        padding: 16px;
+        border-radius: 26px;
+    }
+}
+
+/*--------------------- card-Style --------------------*/
+.edit-customer-card-container {
+    padding: 0px 110px;
+}
+
+.edit-customer-card {
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 50px;
+    margin-top: 50px;
+}
+
+.edit-customer-card-left {
+    border-right: 2px solid #154171;
+    padding-right: 45px;
+}
+
+.edit-customer-card-right {
+    padding-left: 45px;
+}
+
+.card-heading h4 {
+    color: #154171;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: normal;
+}
+
+@media only screen and (max-width:767px) {
+    .edit-customer-card-container {
+        padding: 0px 15px;
+    }
+    .edit-customer-card{
+        padding: 30px;
+    }
+    .edit-customer-card-left {
+        border-right: none;
+        border-bottom: 2px solid #154171;
+        padding-right: 12px;
+        padding-bottom: 25px;
+    }
+    .edit-customer-card-right {
+        padding-left: 12px;
+        margin-top: 30px;
+    }
+    .edit-customer-card-right .col-md-6{
+        margin-bottom: 10px;
+    }
+    .edit-customer-card-right .col-md-6 .btn-secondary{
+        margin-top: 5px;
+    }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1024px) {
+    .edit-customer-card-container {
+        padding: 0px;
+    }
+    .edit-customer-card{
+        padding: 30px;
+    }
+    .edit-customer-card-left {
+        border-right: 2px solid #154171;
+        padding-right: 26px;
+    }
+    .edit-customer-card-right {
+        padding-left: 26px;
+    }
+    .edit-customer-card-right .col-md-6 .btn-secondary{
+        margin-top: 15px;
+    }
+}
+
+/*--------------------- Wave-Banner-Style --------------------*/
+.banner-content-area {
+    width: 100%;
+    min-height: fit-content;
+    background: #2065AE;
+    display: flex;
+    align-items: center;
+}
+
+.banner-btm-img {
+    margin-top: -10px;
+}
+
+.banner-btm-img img {
+    width: 100%;
+    object-fit: fill;
+}
+
+.banner-heading-h2 {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-top: 20px;
+}
+
+.banner-subheading-h3 {
+    color: #fff;
+    font-family: "Poppins", Sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.login-title-h3 {
+    color: #11375F;
+    font-family: "Poppins", Sans-serif;
+    font-size: 35px;
+    font-weight: 600;
+    text-transform: capitalize;
+}
+
+.login-title-h5 {
+    color: #11375F;
+    font-family: "Poppins", Sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+
+.login-form-card {
+    background-color: #dfecf8;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 30px auto;
+}
+
+
+.tbl-card {
+    border-radius: 25px;
+    overflow: hidden;
+}
+
+.tbl-blue-theme th {
+    text-align: -webkit-match-parent;
+    padding: 15px 30px !important;
+    background: #154171 !important;
+    color: #fff !important;
+}
+
+.tbl-blue-theme td {
+    padding: 15px 30px !important;
+}
+
+.table .btn {
+    border-radius: 50px;
+}
+
+.table-responsive::-webkit-scrollbar {
+    height: 12px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #b0c9e5;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #b0c9e5;
+}
+
+.w-max-content {
+    width: max-content;
+}
+
+.d-none-desktop {
+    display: none;
+}
+
+.modal-header {
+    background: #eff7ff;
+    color: #11375F;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.modal-closebtn {
+    border: none;
+    background: transparent;
+}
+
+.modal-closebtn span {
+    color: #11375F;
+}
+
+@media only screen and (max-width:767px) {
+
+    table {
+        width: max-content !important;
+    }
+
+    .d-none-desktop {
+        display: block !important;
+    }
+
+    .d-none-mobile {
+        display: none;
+    }
+
+    .tbl-blue-theme td {
+        padding: 5px 20px !important;
+    }
+
+    .tbl-blue-theme th {
+        padding: 15px 20px !important;
+    }
+
+    .btn {
+        display: flex;
+        align-items: center;
+        font-size: 15px;
+        font-weight: 500;
+        line-height: normal;
+        padding: 4px 10px;
+    }
+
+    .btn-info {
+        font-size: 16px !important;
+        text-transform: capitalize;
+        color: #fff;
+        background-color: #2065AE;
+        border-radius: 50px;
+        padding: 5px 15px !important;
+    }
+
+    .btn-info i {
+        font-size: 16px;
+    }
+
+    .banner-subheading-h3 {
+        color: #fff;
+        font-family: "Poppins", Sans-serif;
+        font-size: 17px;
+        font-weight: 600;
+        text-transform: capitalize;
+        margin-bottom: 25px;
+    }
+
+}
+
+@media only screen and (min-width:768px) and (max-width:991px) {
+    table {
+        width: max-content !important;
+    }
+}
+
+@media only screen and (min-width:992px) and (max-width:1024px) {
+    table {
+        width: 100% !important;
+    }
+}
+@media only screen and (min-width:1025px) and (max-width:1450px) {
+    .nav-link {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .banner-heading-h2 {
+        font-size: 30px;
+        font-weight: 500;
+    }
+    .banner-subheading-h3 {
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .btn {
+        font-size: 15px;
+        font-weight: 500;
+        padding: 3px 12px !important;
+    }
+    .btn span {
+        font-size: 15px;
+        font-weight: 500;
+    }
+    .tbl-blue-theme td {
+        padding: 8px 20px !important;
+        font-size: 14px;
+    }
+    .tbl-blue-theme th {
+        padding: 8px 20px !important;
+        font-size: 16px;
+        font-weight: 500;
+    }
+    .daily-entry-data-tbl td{
+        padding: 0px 10px !important;
+    }
+    .card-heading h4 {
+        font-size: 20px;
+    }
+}
