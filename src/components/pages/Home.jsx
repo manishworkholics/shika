@@ -23,7 +23,7 @@ const Home = () => {
   };
 
   const submit = async (e) => {
-    navigate("/shika/product")
+    navigate("/shika/customer")
     // e.preventDefault();
     // if (!email || !password) {
     //   alert('Please enter All the fields');
