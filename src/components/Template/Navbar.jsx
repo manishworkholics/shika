@@ -12,15 +12,12 @@ const Navbar = () => {
                 <div className="container ">
                     <nav className="navbar navbar-expand-sm">
                         <div className="container-fluid">
-                            <Link className="navbar-brand" to="#">Admin</Link>
+                            <Link className="navbar-brand" to="">Admin</Link>
                             <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                                 <span className="text-white"><i class="fa-solid fa-bars-staggered"></i></span>
                             </button>
                             <div className="collapse navbar-collapse justify-content-center" id="collapsibleNavbar">
                                 <ul className="navbar-nav">
-                                    <li className="nav-item">
-                                        <Link className="nav-link" to="/shika/product">Product</Link>
-                                    </li>
                                     <li className="nav-item">
                                         <Link className="nav-link" to="/shika/customer">Customer</Link>
                                     </li>
