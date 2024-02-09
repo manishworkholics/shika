@@ -9,7 +9,7 @@ const AddEntry = () => {
     const navigate = useNavigate();
 
 
-    const [data, setData] = useState({ name: '', date: '', remark: '' });
+    const [data, setData] = useState({ id: '', date: '', remark: '' });
     const [filename, setfilename] = useState('')
     const [customer, setcustomer] = useState('')
 
@@ -54,14 +54,14 @@ const AddEntry = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
-        const { name, date, remark } = data;
+        const { id, date, remark } = data;
 
-        const fetchdata = fetch("http://206.189.130.102:4242/Api/v/insertremark",
+        const fetchdata = fetch("http://206.189.130.102:4242/Api/v/addremark",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    name: name, date: date, remark: remark, image: filename
+                    id: id, date: date, remark: remark, image: filename
                 }),
             });
         const response = await fetchdata;
@@ -73,7 +73,7 @@ const AddEntry = () => {
             alert("Internal Server Error");
         }
     };
-
+    console.log(data)
     useEffect(() => {
         getCustomer();
     }, [])
@@ -110,11 +110,11 @@ const AddEntry = () => {
                                 <label htmlFor="name" className="form-label">Cutomer Name :</label>
                                 <select
                                     class="form-control"
-                                    name="category"
+                                    name="id"
                                     onChange={handelChange}
                                 >
                                     <option value="" disabled selected hidden>
-                                        Select Category
+                                        Select Customer name
                                     </option>
                                     {customer?.data?.map((val, index) => {
                                         return (

@@ -1,4 +1,4 @@
-import React, {  useState } from 'react'
+import React, { useState } from 'react'
 import Navbar from '../Template/Navbar'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
@@ -14,7 +14,7 @@ const Editentry = () => {
     const [filename, setfilename] = useState('');
 
     const [editremark, seteditremark] = useState({ name: data.name, date: data.date, remark: data.remark, image: data.image })
-    
+
 
     const handelChange = (e) => {
         const name = e.target.name;
@@ -46,14 +46,14 @@ const Editentry = () => {
     };
 
     const handleSubmit = async () => {
-        const {  date, remark ,image} = editremark
-        const fetchdata = fetch(`http://206.189.130.102:4242/Api/v/insertremarkid/${data._id}`, {
+        const { date, remark, image } = editremark
+        const fetchdata = fetch(`http://206.189.130.102:4242/Api/v/updateremarkid/${data._id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({  date: date, remark: remark, image: filename?filename:image })
+            body: JSON.stringify({ date: date, remark: remark, image: filename ? filename : image })
         })
         const response = await fetchdata;
         if (response.status === 200) {
@@ -108,7 +108,7 @@ const Editentry = () => {
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src={editremark.image} alt="" className='imgremark' /> <br />
                                 <br />
-                                <input type="file" name="image" id="" className="form-control" onChange={handleimageuopload}/>
+                                <input type="file" name="image" id="" className="form-control" onChange={handleimageuopload} />
                                 {/* <br />
                                 <label htmlFor="name" className="form-label">Uploaded image :</label><br />
                                 <img src={filename} alt="" className='imgremark' onChange={handelChange} /> <br /> */}
