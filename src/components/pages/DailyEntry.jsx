@@ -14,7 +14,7 @@ const DailyEntry = () => {
   const [data, setdata] = useState('')
 
   const getdata = () => {
-    fetch('http://206.189.130.102:4242/Api/v/getremark')
+    fetch('http://206.189.130.102:4243/Api/v/getremark')
       .then((res) => {
         return res.json()
       }).then((data) => {

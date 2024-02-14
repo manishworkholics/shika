@@ -12,7 +12,7 @@ const Cutomer = () => {
   const [customer, setcustomer] = useState('')
 
   const getCustomer = () => {
-    fetch('http://206.189.130.102:4242/Api/v/getcustomer')
+    fetch('http://206.189.130.102:4243/Api/v/getcustomer')
       .then((res) => {
         return res.json()
       }).then((data) => {

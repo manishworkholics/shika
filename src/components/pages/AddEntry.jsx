@@ -16,7 +16,7 @@ const AddEntry = () => {
 
 
     const getCustomer = () => {
-        fetch('http://206.189.130.102:4242/Api/v/getcustomer')
+        fetch('http://206.189.130.102:4243/Api/v/getcustomer')
             .then((res) => {
                 return res.json()
             }).then((data) => {
@@ -39,7 +39,7 @@ const AddEntry = () => {
             },
         };
         const fetchdata = axios.post(
-            `http://206.189.130.102:4242/api/v1/admin/imageUpload_Use/imageUpload`,
+            `http://206.189.130.102:4243/api/v1/admin/imageUpload_Use/imageUpload`,
             formData,
             requestOptions
         );
@@ -56,7 +56,7 @@ const AddEntry = () => {
         e.preventDefault();
         const { id, date, remark } = data;
 
-        const fetchdata = fetch("http://206.189.130.102:4242/Api/v/addremark",
+        const fetchdata = fetch("http://206.189.130.102:4243/Api/v/addremark",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

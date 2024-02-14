@@ -25,7 +25,7 @@ const EditCustomer = () => {
     //     const { name, mobile, address, businessAddress } = customer;
 
     //     try {
-    //         const response = await fetch(`http://206.189.130.102:4242/Api/v/editcustomer/${data._id}`, {
+    //         const response = await fetch(`http://206.189.130.102:4243/Api/v/editcustomer/${data._id}`, {
     //             method: 'PUT',
 
     //             body: JSON.stringify({ name, businessAddress, mobile, address })
@@ -48,7 +48,7 @@ const EditCustomer = () => {
         const { name, mobile, address, businessAddress } = customer;
 
         try {
-            const response = await fetch(`http://206.189.130.102:4242/Api/v/editcustomer/${data._id}`, {
+            const response = await fetch(`http://206.189.130.102:4243/Api/v/editcustomer/${data._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

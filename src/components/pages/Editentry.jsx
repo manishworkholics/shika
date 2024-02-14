@@ -31,7 +31,7 @@ const Editentry = () => {
             },
         };
         const fetchdata = axios.post(
-            `http://206.189.130.102:4242/api/v1/admin/imageUpload_Use/imageUpload`,
+            `http://206.189.130.102:4243/api/v1/admin/imageUpload_Use/imageUpload`,
             formData,
             requestOptions
         );
@@ -47,7 +47,7 @@ const Editentry = () => {
 
     const handleSubmit = async () => {
         const { date, remark, image } = editremark
-        const fetchdata = fetch(`http://206.189.130.102:4242/Api/v/updateremarkid/${data._id}`, {
+        const fetchdata = fetch(`http://206.189.130.102:4243/Api/v/updateremarkid/${data._id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

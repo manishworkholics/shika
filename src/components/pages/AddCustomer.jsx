@@ -20,7 +20,7 @@ const AddCustomer = () => {
     const submit = async (e) => {
         e.preventDefault();
         const { name, mobile, address, businessAddress } = data
-        const fetchData = fetch('http://206.189.130.102:4242/Api/v/insertcustomer', {
+        const fetchData = fetch('http://206.189.130.102:4243/Api/v/insertcustomer', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: name, mobile: mobile, address: address, businessAddress: businessAddress })
