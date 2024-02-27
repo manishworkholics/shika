@@ -23,7 +23,7 @@ const {id} =useParams();
     
     const formattedDate = `${yyyy}-${mm}-${dd}`;
   
-    const fetchData = fetch('http://localhost:4243/Api/v/getAllremarkTodayDate', {
+    const fetchData = fetch('http://206.189.130.102:4243/Api/v/getAllremarkTodayDate', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ date: formattedDate  })
