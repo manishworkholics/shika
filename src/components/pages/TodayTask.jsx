@@ -89,7 +89,7 @@ const {id} =useParams();
                       return (
                         <tr>
                           <th>{index + 1}</th>
-                          <th>{val?.id?.name}</th>
+                          <th> <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-white" >{val?.id?.name} </Link></th>
                           <th>{val?.amount}</th>
                           <th>{val?.date.split('T')[0]}</th>
                           <th>{val?.remark}</th>

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Template/Navbar'
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
+import loaderimg from "../../assets/loader.gif";
 
 const AddEntry = () => {
 
@@ -12,7 +12,7 @@ const AddEntry = () => {
     const [data, setData] = useState({ id: '', date: '', remark: '',amount:'' });
     const [filename, setfilename] = useState('')
     const [customer, setcustomer] = useState('')
-
+    const [showloader, setShowLoader] = useState("none");
 
 
     const getCustomer = () => {
@@ -31,6 +31,7 @@ const AddEntry = () => {
     }
 
     const handleimageuopload = async (e) => {
+        setShowLoader("block");
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
         var requestOptions = {
@@ -45,9 +46,11 @@ const AddEntry = () => {
         );
         const response = await fetchdata;
         if (response.status === 200) {
+            setShowLoader("none");
             setfilename(response?.data?.url);
             alert('image uploaded')
         } else {
+            setShowLoader("none");
             console.log('ERROR')
         }
     };
@@ -126,7 +129,7 @@ const AddEntry = () => {
                                 </select>
                             </div>
                             <div className="mb-3 mt-3">
-                                <label htmlFor="name" className="form-label">Date :</label>
+                                <label htmlFor="name" className="form-label">Date Give For Return  Amount:</label>
                                 <input type="date" className="form-control" name="date" value={data.date} onChange={handelChange} />
                             </div>
                             <div className="mb-3 mt-3">
@@ -137,7 +140,10 @@ const AddEntry = () => {
                                 <label htmlFor="name" className="form-label">Amount :</label>
                                 <input type="number" className="form-control" name="amount" placeholder='0' value={data.amount} onChange={handelChange} />
                             </div>
-                            <div className="mb-3 mt-3">
+                            <div className="loader-container " style={{ display: showloader }}>
+        <img src={loaderimg} alt="" className="loaderImage" />
+      </div>
+                            <div className="mb-3 mt-3" style={{ display: showloader == 'none' ? 'block':'none' }}>
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src='' alt="" className='imgremark' /> <br />
                                 <input type="file" name="file" id="" className="form-control" onChange={handleimageuopload} />

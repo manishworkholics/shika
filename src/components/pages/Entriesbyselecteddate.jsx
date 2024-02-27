@@ -1,30 +1,55 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Template/Navbar'
 import Home from './Home';
-import { Link } from 'react-router-dom';
+import { Link ,useParams} from 'react-router-dom';
 import dateFormat from "dateformat";
 
 
-const DailyEntry = () => {
+const Entriesbyselecteddate = () => {
   // const usertoken = sessionStorage.getItem('token')
 
   // if (!usertoken) {
   //   return <Home />
   // }
   const [data, setdata] = useState('')
+// const [selectdate,setSelectdate]=useState('');
 
-  const getdata = () => {
-    fetch('http://206.189.130.102:4243/Api/v/getremark')
-      .then((res) => {
-        return res.json()
-      }).then((data) => {
-        setdata(data)
-      })
+const handleDateChange = (e) => {
+    const value = e.target.value
+    // setSelectdate(value);
+    getdata(value);
+}
+
+
+  const getdata = async (selectdate) => {
+   
+    // const today = new Date();
+ 
+    // const dd = String(today.getDate()).padStart(2, '0');
+    // const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    // const yyyy = today.getFullYear();
+    
+    // const formattedDate = `${yyyy}-${mm}-${dd}`;
+  
+    const fetchData = fetch('http://localhost:4243/Api/v/getAllremarkTodayDate', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ date: selectdate  })
+        });
+        const response = await fetchData;
+        const responseData=await response.json();
+         if (response.status === 200) {
+            setdata(responseData)
+        } else {
+          //  console.error("Error:", responseData);
+          setdata('');
+            alert("No Data Found");
+        }
   }
 
-  useEffect(() => {
-    getdata();
-  }, [])
+//   useEffect(() => {
+//    // getdata();
+//   }, [])
 
 
   return (
@@ -36,8 +61,8 @@ const DailyEntry = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h2 className="banner-heading-h2">Daily Entry</h2>
-                  <h3 className="banner-subheading-h3">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Daily Entry</h3>
+                  <h2 className="banner-heading-h2">Entries By Date</h2>
+                  <h3 className="banner-subheading-h3 ">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Entries By Date</h3>
                 </div>
               </div>
             </div>
@@ -51,7 +76,11 @@ const DailyEntry = () => {
         <div className='row'>
           <div className='col-md-12'>
             <div className='d-flex justify-content-end'>
-              <Link type="button" className="btn btn-info my-1" to="/shika/add-entry" >Add  <span><i class="fa-solid fa-plus"></i></span></Link>
+              {/* <Link type="button" className="btn btn-info my-1" to="/shika/add-entry" >Add  <span><i class="fa-solid fa-plus"></i></span></Link> */}
+              <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Date :</label>
+                                <input type="date" className="form-control" name="date"  onChange={handleDateChange} />
+                            </div>
             </div>
             <div className="card tbl-card mt-3">
               <div className="table-responsive">
@@ -73,8 +102,7 @@ const DailyEntry = () => {
                       return (
                         <tr>
                           <th>{index + 1}</th>
-                          <th>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-white" >{val?.id?.name} </Link>
-                         </th>
+                          <th> <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-white" >{val?.id?.name} </Link></th>
                           <th>{val?.amount}</th>
                           <th>{val?.date.split('T')[0]}</th>
                           <th>{val?.remark}</th>
@@ -98,4 +126,4 @@ const DailyEntry = () => {
   );
 };
 
-export default DailyEntry;
+export default Entriesbyselecteddate;

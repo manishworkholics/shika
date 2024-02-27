@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Navbar from '../Template/Navbar'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
+import loaderimg from "../../assets/loader.gif";
 
 
 
@@ -10,6 +11,7 @@ const Editentry = () => {
     const location = useLocation();
     const { data, name } = location.state
     const navigate = useNavigate();
+    const [showloader, setShowLoader] = useState("none");
 
     const [filename, setfilename] = useState('');
 
@@ -23,6 +25,7 @@ const Editentry = () => {
     }
 
     const handleimageuopload = async (e) => {
+        setShowLoader("block");
         const formData = new FormData();
         formData.append("file", e.target.files[0]);
         var requestOptions = {
@@ -37,10 +40,12 @@ const Editentry = () => {
         );
         const response = await fetchdata;
         if (response.status === 200) {
+            setShowLoader("none");
             setfilename(response?.data?.url);
             //alert(response?.data?.url);
             alert('image uploaded')
         } else {
+            setShowLoader("none");
             console.log('ERROR')
         }
     };
@@ -108,6 +113,9 @@ const Editentry = () => {
                                 <label htmlFor="name" className="form-label">Amount :</label>
                                 <input type="number" className="form-control" name="amount" value={editremark.amount} placeholder='Enter Amount' onChange={handelChange} />
                             </div>
+                            <div className="loader-container " style={{ display: showloader }}>
+        <img src={loaderimg} alt="" className="loaderImage" />
+      </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src={editremark.image} alt="" className='imgremark' /> <br />

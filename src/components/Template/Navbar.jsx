@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from "react-router-dom";
+import loaderimg from "../../assets/loader.gif";
 
 const Navbar = () => {
     const logout = () => {
@@ -28,8 +29,11 @@ const Navbar = () => {
                                         <Link className="nav-link" to="/shika/todaytask">Today Task</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link" to="/shika/report">Reports</Link>
+                                        <Link className="nav-link" to="/shika/entriesbyselecteddate">Entry By Date</Link>
                                     </li>
+                                    {/* <li className="nav-item">
+                                        <Link className="nav-link" to="/shika/report">Reports</Link>
+                                    </li> */}
                                     <li className="nav-item dropdown d-none-desktop">
                                         <Link to="/" data-bs-toggle="dropdown" className='nav-icon pe-md-0 nav-link'>
                                             <img src={require("../img/profile-img.jpg")} className='avatar profile img-fluid rounded' alt="" />

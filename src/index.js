@@ -13,6 +13,7 @@ import Editentry from './components/pages/Editentry';
 import AddEntry from './components/pages/AddEntry';
 import EntryBycustomerId from './components/pages/EntryForCustomer';
 import TodayTask from './components/pages/TodayTask';
+import Entriesbyselecteddate from './components/pages/Entriesbyselecteddate';
 
 
 const root = ReactDOM.createRoot(
@@ -33,6 +34,7 @@ root.render(
                 <Route index path="/shika/edit-entry/:id" element={<Editentry />} />
                 <Route index path="/shika/add-entry" element={<AddEntry />} />
                 <Route index path="/shika/todaytask" element={<TodayTask />} />
+                <Route index path="/shika/entriesbyselecteddate" element={<Entriesbyselecteddate />} />
 
 
                 <Route path='*' element={<PageNotFound />} />
