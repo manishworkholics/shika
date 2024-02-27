@@ -75,6 +75,7 @@ const Cutomer = () => {
                           <th>{val?.businessAddress}</th>
                           <th>
                           <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                          <Link to={`/shika/entryBycustomerId/${val?._id}`}  type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>
                           </th>
                         </tr>
                       )

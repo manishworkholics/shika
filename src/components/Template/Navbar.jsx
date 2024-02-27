@@ -25,6 +25,9 @@ const Navbar = () => {
                                         <Link className="nav-link" to="/shika/daily-entry">DailyEntry</Link>
                                     </li>
                                     <li className="nav-item">
+                                        <Link className="nav-link" to="/shika/todaytask">Today Task</Link>
+                                    </li>
+                                    <li className="nav-item">
                                         <Link className="nav-link" to="/shika/report">Reports</Link>
                                     </li>
                                     <li className="nav-item dropdown d-none-desktop">

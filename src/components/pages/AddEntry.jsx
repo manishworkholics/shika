@@ -9,7 +9,7 @@ const AddEntry = () => {
     const navigate = useNavigate();
 
 
-    const [data, setData] = useState({ id: '', date: '', remark: '' });
+    const [data, setData] = useState({ id: '', date: '', remark: '',amount:'' });
     const [filename, setfilename] = useState('')
     const [customer, setcustomer] = useState('')
 
@@ -54,14 +54,14 @@ const AddEntry = () => {
 
     const Submit = async (e) => {
         e.preventDefault();
-        const { id, date, remark } = data;
+        const { id, date, remark,amount } = data;
 
         const fetchdata = fetch("http://206.189.130.102:4243/Api/v/addremark",
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    id: id, date: date, remark: remark, image: filename
+                    id: id, date: date, remark: remark,  amount: amount,image: filename
                 }),
             });
         const response = await fetchdata;
@@ -134,9 +134,13 @@ const AddEntry = () => {
                                 <input type="text" className="form-control" name="remark" placeholder='Remark (if any)' value={data.remark} onChange={handelChange} />
                             </div>
                             <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Amount :</label>
+                                <input type="number" className="form-control" name="amount" placeholder='0' value={data.amount} onChange={handelChange} />
+                            </div>
+                            <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src='' alt="" className='imgremark' /> <br />
-                                <input type="file" name="image" id="" className="form-control" onChange={handleimageuopload} />
+                                <input type="file" name="file" id="" className="form-control" onChange={handleimageuopload} />
                                 {/* <br />
                                 <label htmlFor="name" className="form-label">Uploaded image :</label><br />
                                 <img src={filename} alt="" className='imgremark' onChange={handelChange} /> <br /> */}

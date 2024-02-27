@@ -13,7 +13,7 @@ const Editentry = () => {
 
     const [filename, setfilename] = useState('');
 
-    const [editremark, seteditremark] = useState({ name: data.name, date: data.date, remark: data.remark, image: data.image })
+    const [editremark, seteditremark] = useState({ name: data.name, date: data.date, remark: data.remark,amount: data.amount, image: data.image })
 
 
     const handelChange = (e) => {
@@ -105,10 +105,14 @@ const Editentry = () => {
                                 <input type="text" className="form-control" name="remark" value={editremark.remark} placeholder='Enter address' onChange={handelChange} />
                             </div>
                             <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Amount :</label>
+                                <input type="number" className="form-control" name="amount" value={editremark.amount} placeholder='Enter Amount' onChange={handelChange} />
+                            </div>
+                            <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src={editremark.image} alt="" className='imgremark' /> <br />
                                 <br />
-                                <input type="file" name="image" id="" className="form-control" onChange={handleimageuopload} />
+                                <input type="file"   name="file" id="" className="form-control" onChange={handleimageuopload} />
                                 {/* <br />
                                 <label htmlFor="name" className="form-label">Uploaded image :</label><br />
                                 <img src={filename} alt="" className='imgremark' onChange={handelChange} /> <br /> */}

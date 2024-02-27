@@ -11,23 +11,28 @@ import EditCustomer from './components/pages/EditCustomer';
 import AddCustomer from './components/pages/AddCustomer';
 import Editentry from './components/pages/Editentry';
 import AddEntry from './components/pages/AddEntry';
+import EntryBycustomerId from './components/pages/EntryForCustomer';
+import TodayTask from './components/pages/TodayTask';
 
 
 const root = ReactDOM.createRoot(
     document.getElementById("root")
 );
+
 root.render(
     <BrowserRouter>
         <Routes>
             <Route path="/shika" element={<App />}>
                 <Route index path="/shika" element={<Home />} />
                 <Route index path="/shika/customer" element={<Cutomer />} />
+                <Route index path="/shika/entryBycustomerId/:id" element={<EntryBycustomerId />} />
                 <Route index path="/shika/edit-customer/:id" element={<EditCustomer />} />
                 <Route index path="/shika/add-customer" element={<AddCustomer />} />
                 <Route index path="/shika/report" element={<Reports />} />
                 <Route index path="/shika/daily-entry" element={<DailyEntry />} />
                 <Route index path="/shika/edit-entry/:id" element={<Editentry />} />
                 <Route index path="/shika/add-entry" element={<AddEntry />} />
+                <Route index path="/shika/todaytask" element={<TodayTask />} />
 
 
                 <Route path='*' element={<PageNotFound />} />
