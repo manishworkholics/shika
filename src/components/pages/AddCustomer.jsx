@@ -31,7 +31,7 @@ const AddCustomer = () => {
             navigate("/shika/customer");
         } else {
             console.error("Error:", responseData);
-            alert("Internal Server Error");
+            alert("Already Exist");
         }
     }
 
