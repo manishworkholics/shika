@@ -7,12 +7,12 @@ import loaderimg from "../../assets/loader.gif";
 
 
 const Editentry = () => {
-
+    const URL = process.env.REACT_APP_URL;
     const location = useLocation();
     const { data, name } = location.state
     const navigate = useNavigate();
     const [showloader, setShowLoader] = useState("none");
-
+   
     const [filename, setfilename] = useState('');
 
     const [editremark, seteditremark] = useState({ name: data.name, date: data.date, remark: data.remark,amount: data.amount, image: data.image })
@@ -34,7 +34,7 @@ const Editentry = () => {
             },
         };
         const fetchdata = axios.post(
-            `http://206.189.130.102:4243/api/v1/admin/imageUpload_Use/imageUpload`,
+            `${URL}/admin/imageUpload_Use/imageUpload`,
             formData,
             requestOptions
         );
@@ -52,7 +52,7 @@ const Editentry = () => {
 
     const handleSubmit = async () => {
         const { date, remark, image } = editremark
-        const fetchdata = fetch(`http://206.189.130.102:4243/Api/v/updateremarkid/${data._id}`, {
+        const fetchdata = fetch(`${URL}/updateremarkid/${data._id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',

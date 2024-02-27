@@ -4,6 +4,7 @@ import Home from './Home';
 import { Link } from 'react-router-dom';
 
 const Cutomer = () => {
+  const URL = process.env.REACT_APP_URL;
   // const usertoken = sessionStorage.getItem('token')
   // if (!usertoken) {
   //   return <Home />
@@ -12,7 +13,8 @@ const Cutomer = () => {
   const [customer, setcustomer] = useState('')
 
   const getCustomer = () => {
-    fetch('http://206.189.130.102:4243/Api/v/getcustomer')
+    
+    fetch(`${URL}/getcustomer`)
       .then((res) => {
         return res.json()
       }).then((data) => {
@@ -61,6 +63,7 @@ const Cutomer = () => {
                       <th>Contact</th>
                       <th>Address</th>
                       <th>Business Address</th>
+                      <th>Pending Amount</th>
                       <th className='text-center'>Action</th>
                     </tr>
                   </thead>
@@ -73,6 +76,7 @@ const Cutomer = () => {
                           <th>{val?.mobile}</th>
                           <th>{val?.address}</th>
                           <th>{val?.businessAddress}</th>
+                          <th>{val?.totalamount}</th>
                           <th>
                           <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                           <Link to={`/shika/entryBycustomerId/${val?._id}`}  type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>

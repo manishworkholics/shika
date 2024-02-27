@@ -6,6 +6,7 @@ import dateFormat from "dateformat";
 
 
 const DailyEntry = () => {
+  const URL = process.env.REACT_APP_URL;
   // const usertoken = sessionStorage.getItem('token')
 
   // if (!usertoken) {
@@ -14,7 +15,7 @@ const DailyEntry = () => {
   const [data, setdata] = useState('')
 
   const getdata = () => {
-    fetch('http://206.189.130.102:4243/Api/v/getremark')
+    fetch(`${URL}/getremark`)
       .then((res) => {
         return res.json()
       }).then((data) => {

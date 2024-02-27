@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
+  const URL = process.env.REACT_APP_URL;
   const navigate = useNavigate()
   const [email, setemail] = useState('');
   const [password, setpassword] = useState('');

@@ -5,18 +5,20 @@ import { useNavigate } from 'react-router-dom';
 import loaderimg from "../../assets/loader.gif";
 
 const AddEntry = () => {
-
+    const URL = process.env.REACT_APP_URL;
+ 
     const navigate = useNavigate();
 
 
-    const [data, setData] = useState({ id: '', date: '', remark: '',amount:'' });
+    const [data, setData] = useState({ id:'', date:'', remark:'',amount:'' ,amount_given_To_user:false,amount_given_By_user:false});
     const [filename, setfilename] = useState('')
-    const [customer, setcustomer] = useState('')
+    const [customer, setcustomer] = useState('');
+    const [dummyforchckdropdown, setdummyforchckdropdown] = useState('');
     const [showloader, setShowLoader] = useState("none");
 
 
     const getCustomer = () => {
-        fetch('http://206.189.130.102:4243/Api/v/getcustomer')
+        fetch(`${URL}/getcustomer`)
             .then((res) => {
                 return res.json()
             }).then((data) => {
@@ -27,7 +29,27 @@ const AddEntry = () => {
     const handelChange = (e) => {
         const name = e.target.name;
         const value = e.target.value;
+        if(name === "amttype")
+        {
+            if(value === "amount_given_To_user")
+            {
+                setData({ ...data, "amount_given_To_user": true });
+                setData({ ...data, "amount_given_By_user": false });
+            }
+            if(value === "amount_given_By_user")
+            {
+                setData({ ...data, "amount_given_By_user": true });
+                setData({ ...data, "amount_given_To_user": false });
+            }  
+            if(value === "NoAmount")
+            {
+                setData({ ...data, "amount_given_By_user": false });
+                setData({ ...data, "amount_given_To_user": false });
+            }            
+        }
+        else{
         setData({ ...data, [name]: value });
+    }
     }
 
     const handleimageuopload = async (e) => {
@@ -40,7 +62,7 @@ const AddEntry = () => {
             },
         };
         const fetchdata = axios.post(
-            `http://206.189.130.102:4243/api/v1/admin/imageUpload_Use/imageUpload`,
+            `${URL}/admin/imageUpload_Use/imageUpload`,
             formData,
             requestOptions
         );
@@ -59,7 +81,7 @@ const AddEntry = () => {
         e.preventDefault();
         const { id, date, remark,amount } = data;
 
-        const fetchdata = fetch("http://206.189.130.102:4243/Api/v/addremark",
+        const fetchdata = fetch(`${URL}/addremark`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -136,6 +158,30 @@ const AddEntry = () => {
                                 <label htmlFor="name" className="form-label">Remark :</label>
                                 <input type="text" className="form-control" name="remark" placeholder='Remark (if any)' value={data.remark} onChange={handelChange} />
                             </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Amount Type:</label>
+                                <select
+                                    class="form-control"
+                                    name="amttype"
+                                    onChange={handelChange}
+                                >
+                                    <option value="" >
+                                        Select Amount Type
+                                    </option>
+                                   
+                                            <option value="amount_given_To_user" >
+                                            To_user
+                                            </option>
+                                            <option value="amount_given_By_user" >
+                                            By_user
+                                            </option>
+                                            <option value="NoAmount" >
+                                            NoAmount
+                                            </option>
+                                       
+                                   
+                                </select>
+                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Amount :</label>
                                 <input type="number" className="form-control" name="amount" placeholder='0' value={data.amount} onChange={handelChange} />

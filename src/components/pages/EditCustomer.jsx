@@ -9,7 +9,7 @@ const EditCustomer = () => {
     const location = useLocation();
     const { data } = location.state
     const navigate = useNavigate();
-
+    const URL = process.env.REACT_APP_URL;
 
     const [customer, setcustomer] = useState({ name: data.name, mobile: data.mobile, address: data.address, businessAddress: data.businessAddress })
 
@@ -48,7 +48,7 @@ const EditCustomer = () => {
         const { name, mobile, address, businessAddress } = customer;
 
         try {
-            const response = await fetch(`http://206.189.130.102:4243/Api/v/editcustomer/${data._id}`, {
+            const response = await fetch(`${URL}/editcustomer/${data._id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json'

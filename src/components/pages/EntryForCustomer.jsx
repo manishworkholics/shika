@@ -6,6 +6,7 @@ import dateFormat from "dateformat";
 
 
 const EntryForCustomer = () => {
+  const URL = process.env.REACT_APP_URL;
   // const usertoken = sessionStorage.getItem('token')
 const {id} =useParams();
   // if (!usertoken) {
@@ -14,7 +15,7 @@ const {id} =useParams();
   const [data, setdata] = useState('')
 
   const getdata = () => {
-    fetch(`http://206.189.130.102:4243/Api/v/getAllremark_by_customer_id/${id}`)
+    fetch(`${URL}/getAllremark_by_customer_id/${id}`)
       .then((res) => {
         return res.json()
       }).then((data) => {

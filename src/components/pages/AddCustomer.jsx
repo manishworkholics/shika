@@ -5,11 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 
 const AddCustomer = () => {
-
+    const URL = process.env.REACT_APP_URL;
+ 
     const navigate = useNavigate();
     const [data, setdata] = useState({ name: '', mobile: '', address: '', businessAddress: '' })
-
-
 
     const handleChange = (e) => {
         const name = e.target.name;
@@ -20,7 +19,7 @@ const AddCustomer = () => {
     const submit = async (e) => {
         e.preventDefault();
         const { name, mobile, address, businessAddress } = data
-        const fetchData = fetch('http://206.189.130.102:4243/Api/v/insertcustomer', {
+        const fetchData = fetch(`${URL}/insertcustomer`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ name: name, mobile: mobile, address: address, businessAddress: businessAddress })
