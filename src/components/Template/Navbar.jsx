@@ -29,7 +29,7 @@ const Navbar = () => {
                                         <Link className="nav-link" to="/shika/todaytask">Today Task</Link>
                                     </li>
                                     <li className="nav-item">
-                                        <Link className="nav-link" to="/shika/entriesbyselecteddate">Entry By Date</Link>
+                                        <Link className="nav-link" to="/shika/entriesbyselecteddate">Task Entry By Date</Link>
                                     </li>
                                     {/* <li className="nav-item">
                                         <Link className="nav-link" to="/shika/report">Reports</Link>

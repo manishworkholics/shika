@@ -388,7 +388,15 @@ body {
     }
 
 }
-
+/* FOr table red gree */
+.tb_bg_red {
+     color: #fff;
+    background-color: #e7324a !important;
+}
+.tb_bg_green {
+    color: #fff;
+   background-color: #70f576 !important;
+}
 @media only screen and (min-width:768px) and (max-width:991px) {
     table {
         width: max-content !important;

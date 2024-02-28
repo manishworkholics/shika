@@ -10,11 +10,14 @@ const AddEntry = () => {
     const navigate = useNavigate();
 
 
-    const [data, setData] = useState({ id:'', date:'', remark:'',amount:'' ,amount_given_To_user:false,amount_given_By_user:false});
+    const [data, setData] = useState({ id:'', date:'', remark:'',amount:'' });
     const [filename, setfilename] = useState('')
     const [customer, setcustomer] = useState('');
-    const [dummyforchckdropdown, setdummyforchckdropdown] = useState('');
+    // const [dummyforchckdropdown, setdummyforchckdropdown] = useState('');
+    // const [pendingAmt, setpendingAmt] = useState(0);
     const [showloader, setShowLoader] = useState("none");
+    const [amount_given_To_user, setamount_given_To_user] = useState(false);
+    const [amount_given_By_user, setamount_given_By_user] = useState(false);
 
 
     const getCustomer = () => {
@@ -33,18 +36,21 @@ const AddEntry = () => {
         {
             if(value === "amount_given_To_user")
             {
-                setData({ ...data, "amount_given_To_user": true });
-                setData({ ...data, "amount_given_By_user": false });
+               
+                 setamount_given_To_user(true);
+                 setamount_given_By_user(false);
             }
             if(value === "amount_given_By_user")
             {
-                setData({ ...data, "amount_given_By_user": true });
-                setData({ ...data, "amount_given_To_user": false });
+                 
+                 setamount_given_To_user(false);
+                 setamount_given_By_user(true);
             }  
             if(value === "NoAmount")
             {
-                setData({ ...data, "amount_given_By_user": false });
-                setData({ ...data, "amount_given_To_user": false });
+                
+                 setamount_given_To_user(false);
+                 setamount_given_By_user(false);
             }            
         }
         else{
@@ -76,17 +82,20 @@ const AddEntry = () => {
             console.log('ERROR')
         }
     };
-
+    // console.log(amount_given_To_user);
+    // console.log(amount_given_By_user);
     const Submit = async (e) => {
         e.preventDefault();
         const { id, date, remark,amount } = data;
 
+        // console.log(amount_given_To_user);
+        // console.log(amount_given_By_user);
         const fetchdata = fetch(`${URL}/addremark`,
             {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
-                    id: id, date: date, remark: remark,  amount: amount,image: filename
+                    id: id, date: date, remark: remark,  amount: amount,image: filename,amount_given_To_user:amount_given_To_user,amount_given_By_user:amount_given_By_user,
                 }),
             });
         const response = await fetchdata;
@@ -150,6 +159,7 @@ const AddEntry = () => {
                                     })}
                                 </select>
                             </div>
+                           
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Date Give For Return  Amount:</label>
                                 <input type="date" className="form-control" name="date" value={data.date} onChange={handelChange} />
@@ -182,6 +192,10 @@ const AddEntry = () => {
                                    
                                 </select>
                              </div>
+                             {/* <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label ">Old Pending Amount: {pendingAmt}</label>
+                            
+                            </div> */}
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Amount :</label>
                                 <input type="number" className="form-control" name="amount" placeholder='0' value={data.amount} onChange={handelChange} />

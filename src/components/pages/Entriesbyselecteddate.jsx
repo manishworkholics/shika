@@ -50,6 +50,13 @@ const handleDateChange = (e) => {
 //   useEffect(() => {
 //    // getdata();
 //   }, [])
+const formatDate2 = (dateString) => {
+  const date = new Date(dateString);
+  // Add one day
+  date.setDate(date.getDate() + 1);
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+  return date.toLocaleDateString('en-US', options);
+};
 
 
   return (
@@ -87,30 +94,32 @@ const handleDateChange = (e) => {
                 <table className="table table-striped tbl-blue-theme">
                   <thead>
                     <tr>
-                      <th>S.no</th>
+                    <th>S.no</th>
                       <th>Name</th>
                       <th>Amount</th>
-                      <th>For Date</th>
+                     
                       <th>Remark</th>
-                      <th>Bill</th>
+                       <th>For Date</th>
                       <th>Created Date</th>
-                      <th className='text-center'>Action</th>
-                    </tr>
+                      <th>Bill</th>
+                      <th className='text-center'>Action</th></tr>
                   </thead>
                   <tbody>
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                          <th>{index + 1}</th>
-                          <th> <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-white" >{val?.id?.name} </Link></th>
-                          <th>{val?.amount}</th>
-                          <th>{val?.date.split('T')[0]}</th>
-                          <th>{val?.remark}</th>
-                          <th><img src={val?.image} alt="img" className='imgremark' /></th>
-                          <th> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</th>
-                          <th>
+                          <td className={val?.amount_given_To_user  ? 'tb_bg_red':'tb_bg_green' }>{index + 1}</td>
+                          <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-black" >{val?.id?.name} </Link>
+                         </td>
+                          <td>{val?.amount}</td>
+                          <td>{val?.remark}</td>
+                          {/* {val?.date.split('T')[0]} */}
+                          <td> {formatDate2(val?.date.split('T')[0])}</td>
+                          <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td>
+                          <td><img src={val?.image} alt="img" className='imgremark' /></td>
+                          <td>
                             <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val,name:val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
-                          </th>
+                          </td>
                           
                         </tr>
                       )
