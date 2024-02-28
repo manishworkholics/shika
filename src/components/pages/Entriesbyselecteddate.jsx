@@ -96,7 +96,7 @@ const formatDate2 = (dateString) => {
                     <tr>
                     <th>S.no</th>
                       <th>Name</th>
-                      <th>Amount</th>
+                      <th>Pending Amount</th>
                      
                       <th>Remark</th>
                        <th>For Date</th>
@@ -111,7 +111,7 @@ const formatDate2 = (dateString) => {
                           <td className={val?.amount_given_To_user  ? 'tb_bg_red':'tb_bg_green' }>{index + 1}</td>
                           <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-black" >{val?.id?.name} </Link>
                          </td>
-                          <td>{val?.amount}</td>
+                          <td>{val?.id?.totalamount}</td>
                           <td>{val?.remark}</td>
                           {/* {val?.date.split('T')[0]} */}
                           <td> {formatDate2(val?.date.split('T')[0])}</td>
