@@ -12,7 +12,8 @@ const {id} =useParams();
   // if (!usertoken) {
   //   return <Home />
   // }
-  const [data, setdata] = useState('')
+  const [data, setdata] = useState('');
+  const [userdata, setuserdata] = useState('');
 
   const getdata = () => {
     fetch(`${URL}/getAllremark_by_customer_id/${id}`)
@@ -20,6 +21,7 @@ const {id} =useParams();
         return res.json()
       }).then((data) => {
         setdata(data)
+        setuserdata(data.findcustomer);
       })
   }
 
@@ -43,7 +45,7 @@ const {id} =useParams();
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h2 className="banner-heading-h2">Customer Entry</h2>
+                  <h2 className="banner-heading-h2"><span style={{ color: 'red' }}>{userdata?.name} </span>Detail Entry </h2>
                   <h3 className="banner-subheading-h3 ">Home <span className='mx-3'><i class="fa-solid fa-angle-right"></i></span>Customer Entry</h3>
                 </div>
               </div>
@@ -57,7 +59,11 @@ const {id} =useParams();
       <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <div className='d-flex justify-content-end'>
+            <div className='d-flex justify-content-between'>
+            <span style={{ color: 'black' }}>
+        <b>Customer Name:</b>  {userdata?.name} <br />
+        <b>Amount Pending:</b>  <span style={{ color: 'red' }}>{userdata?.totalamount} </span>
+      </span>
               <Link type="button" className="btn btn-info my-1" to="/shika/add-entry" >Add  <span><i class="fa-solid fa-plus"></i></span></Link>
             </div>
             <div className="card tbl-card mt-3">

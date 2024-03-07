@@ -10,7 +10,8 @@ const Cutomer = () => {
   //   return <Home />
   // }
 
-  const [customer, setcustomer] = useState('')
+  const [customers, setCustomers] = useState([]);
+  const [filterValue, setFilterValue] = useState('');
 
   const getCustomer = () => {
     
@@ -18,13 +19,27 @@ const Cutomer = () => {
       .then((res) => {
         return res.json()
       }).then((data) => {
-        setcustomer(data)
+        setCustomers(data.data)
       })
   }
 
   useEffect(() => {
     getCustomer();
   }, [])
+  // Function to filter customers based on input field value
+  const filterCustomers = (value) => {
+    if (!value) {
+      return customers;
+    }
+    return customers.filter(customer =>
+      customer.name.toLowerCase().includes(value.toLowerCase())
+    );
+  };
+
+  // Function to handle input change
+  const handleInputChange = (e) => {
+    setFilterValue(e.target.value);
+  };
 
   return (
     <>
@@ -50,7 +65,13 @@ const Cutomer = () => {
       <div className='container my-5 pb-5'>
         <div className='row'>
           <div className='col-md-12'>
-            <div className='d-flex justify-content-end'>
+            <div className='d-flex justify-content-between'>
+            <input
+        type="text"
+        placeholder="Search by customer name"
+        value={filterValue}
+        onChange={handleInputChange}
+      />
               <Link type="button" className="btn btn-info my-1" to="/shika/add-customer" >Add  <span><i class="fa-solid fa-plus"></i></span></Link>
             </div>
             <div className="card tbl-card mt-3">
@@ -68,19 +89,19 @@ const Cutomer = () => {
                     </tr>
                   </thead>
                   <tbody>
-                    {customer?.data?.map((val, index) => {
+                    {filterCustomers(filterValue)?.map((val, index) => {
                       return (
                         <tr>
-                          <th>{index + 1}</th>
-                          <th>{val?.name}</th>
-                          <th>{val?.mobile}</th>
-                          <th>{val?.address}</th>
-                          <th>{val?.businessAddress}</th>
-                          <th>{val?.totalamount}</th>
-                          <th>
+                          <td>{index + 1}</td>
+                          <td>{val?.name}</td>
+                          <td>{val?.mobile}</td>
+                          <td>{val?.address}</td>
+                          <td>{val?.businessAddress}</td>
+                          <td>{val?.totalamount}</td>
+                          <td>
                           <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                           <Link to={`/shika/entryBycustomerId/${val?._id}`}  type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>
-                          </th>
+                          </td>
                         </tr>
                       )
                     })}
