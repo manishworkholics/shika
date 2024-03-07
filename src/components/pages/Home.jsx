@@ -1,48 +1,43 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 
 const Home = () => {
-  const URL = process.env.REACT_APP_URL;
+  const [data, setData] = useState({ email: "", password: "" });
+
   const navigate = useNavigate()
-  const [email, setemail] = useState('');
-  const [password, setpassword] = useState('');
 
-  var myHeaders = new Headers();
-  myHeaders.append("Content-Type", "application/json");
-
-  var raw = JSON.stringify({
-    "email": email,
-    "password": password
-  });
-
-  var requestOptions = {
-    method: 'POST',
-    headers: myHeaders,
-    body: raw,
-    redirect: 'follow'
+  const handleChange = (e) => {
+      const name = e.target.name;
+      const value = e.target.value;
+      setData({ ...data, [name]: value });
   };
 
-  const submit = async (e) => {
-    navigate("/shika/customer")
-    // e.preventDefault();
-    // if (!email || !password) {
-    //   alert('Please enter All the fields');
-    //   return;
-    // }
-    // const fetchdata = fetch("", requestOptions);
-    // const response = await fetchdata;
-    // const res = await response.json();
 
-    // if (response.status === 200) {
-    //   alert("login successfully");
-    //   sessionStorage.setItem("token", res.token);
-    //   navigate("/shika/product");
-    // } else {
-    //   alert("Invalid Credentials");
-    // }
+  const Submit = async (e) => {
+    e.preventDefault();
+    const { email, password } = data;
+    if (!email || !password) {
+      alert('Please enter All the fields');
+      return;
+    }
+    const fetchdata = fetch("http://206.189.130.102:1200/api/v1/admin/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+    const response = await fetchdata;
+    const res = await response.json();
+
+    if (response.status === 200) {
+      sessionStorage.setItem("token", res.token);
+      localStorage.setItem('permission', res.admindata.loginType.permission)
+      navigate('/shika/customer')
+    } else {
+      alert("Invalid Credentials");
+    }
   };
 
+  console.log(data)
 
   return (
     <>
@@ -52,7 +47,7 @@ const Home = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12 my-5">
-                  <Link className="navbar-brand" to="#">Shika Electrical</Link>
+                  <p className="navbar-brand" to="#">Shika Electrical</p>
                 </div>
               </div>
             </div>
@@ -77,14 +72,14 @@ const Home = () => {
 
                         <div class="mb-3">
                           <label for="exampleInputEmail1" class="form-label login-title-h5">email <span className='ms-2'><i class="fa-solid fa-user"></i></span></label>
-                          <input type="text" class="form-control rounded-pill" id="exampleInputEmail1" aria-describedby="emailHelp" value={email} onChange={(e) => setemail(e.target.value)} />
+                          <input type="text" class="form-control rounded-pill" name='email' aria-describedby="emailHelp" value={data.email} onChange={handleChange} />
                         </div>
                         <div class="mb-3">
                           <label for="exampleInputPassword1" class="form-label login-title-h5">Password <span className="ms-2"><i class="fa-solid fa-key"></i></span></label>
-                          <input type="password" class="form-control  rounded-pill" id="exampleInputPassword1" value={password} onChange={(e) => setpassword(e.target.value)} />
+                          <input type="password" class="form-control  rounded-pill" name='password' value={data.password} onChange={handleChange} />
                         </div>
                         <div className='d-flex justify-content-center mt-3 mb-3'>
-                          <button type="submit" class="btn btn-info" onClick={submit}>Submit</button>
+                          <button type="submit" class="btn btn-info" onClick={Submit}>Submit</button>
                         </div>
 
                       </div>

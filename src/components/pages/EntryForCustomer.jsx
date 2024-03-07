@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Template/Navbar'
 import Home from './Home';
-import { Link ,useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import dateFormat from "dateformat";
 
 
 const EntryForCustomer = () => {
   const URL = process.env.REACT_APP_URL;
-  // const usertoken = sessionStorage.getItem('token')
-const {id} =useParams();
-  // if (!usertoken) {
-  //   return <Home />
-  // }
+  const usertoken = sessionStorage.getItem('token')
+  const { id } = useParams();
+
   const [data, setdata] = useState('');
   const [userdata, setuserdata] = useState('');
 
@@ -35,6 +33,10 @@ const {id} =useParams();
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   };
+
+  if (!usertoken) {
+    return <Home />
+  }
 
   return (
     <>
@@ -60,10 +62,10 @@ const {id} =useParams();
         <div className='row'>
           <div className='col-md-12'>
             <div className='d-flex justify-content-between'>
-            <span style={{ color: 'black' }}>
-        <b>Customer Name:</b>  {userdata?.name} <br />
-        <b>Amount Pending:</b>  <span style={{ color: 'red' }}>{userdata?.totalamount} </span>
-      </span>
+              <span style={{ color: 'black' }}>
+                <b>Customer Name:</b>  {userdata?.name} <br />
+                <b>Amount Pending:</b>  <span style={{ color: 'red' }}>{userdata?.totalamount} </span>
+              </span>
               <Link type="button" className="btn btn-info my-1" to="/shika/add-entry" >Add  <span><i class="fa-solid fa-plus"></i></span></Link>
             </div>
             <div className="card tbl-card mt-3">
@@ -74,9 +76,9 @@ const {id} =useParams();
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Amount</th>
-                     
+
                       <th>Remark</th>
-                       <th>For Date</th>
+                      <th>For Date</th>
                       <th>Created Date</th>
                       <th>Bill</th>
                       <th className='text-center'>Action</th>
@@ -86,7 +88,7 @@ const {id} =useParams();
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                          <td className={val?.amount_given_To_user  ? 'tb_bg_red':'tb_bg_green' }>{index + 1}</td>
+                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : 'tb_bg_green'}>{index + 1}</td>
                           <td>{val?.id?.name}</td>
                           <td>{val?.amount}</td>
                           <td>{val?.remark}</td>
@@ -95,9 +97,9 @@ const {id} =useParams();
                           <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td>
                           <td><img src={val?.image} alt="img" className='imgremark' /></td>
                           <td>
-                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val,name:val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val, name: val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                           </td>
-                          
+
                         </tr>
                       )
                     })}

@@ -5,7 +5,7 @@ import Home from './Home';
 
 const EditCustomer = () => {
 
-
+    const usertoken = sessionStorage.getItem('token')
     const location = useLocation();
     const { data } = location.state
     const navigate = useNavigate();
@@ -67,9 +67,9 @@ const EditCustomer = () => {
             alert("An error occurred while updating customer");
         }
     };
-    // if (!usertoken) {
-    //     return <Home />
-    // }
+    if (!usertoken) {
+        return <Home />
+    }
     return (
         <>
             < Navbar />

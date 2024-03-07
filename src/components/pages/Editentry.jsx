@@ -3,16 +3,18 @@ import Navbar from '../Template/Navbar'
 import { useLocation, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import loaderimg from "../../assets/loader.gif";
+import Home from './Home';
 
 
 
 const Editentry = () => {
     const URL = process.env.REACT_APP_URL;
+    const usertoken = sessionStorage.getItem('token')
     const location = useLocation();
     const { data, name } = location.state
     const navigate = useNavigate();
     const [showloader, setShowLoader] = useState("none");
-   
+
     const [filename, setfilename] = useState('');
 
     const [editremark, seteditremark] = useState({ name: data.name, date: data.date, remark: data.remark, image: data.image })
@@ -68,6 +70,9 @@ const Editentry = () => {
             alert("Invalid Credentials");
         }
     }
+    if (!usertoken) {
+        return <Home />
+    }
 
 
     return (
@@ -114,13 +119,13 @@ const Editentry = () => {
                                 <input type="number" className="form-control" name="amount" value={editremark.amount} placeholder='Enter Amount' onChange={handelChange} />
                             </div> */}
                             <div className="loader-container " style={{ display: showloader }}>
-        <img src={loaderimg} alt="" className="loaderImage" />
-      </div>
+                                <img src={loaderimg} alt="" className="loaderImage" />
+                            </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Invoice Image :</label><br />
                                 <img src={editremark.image} alt="" className='imgremark' /> <br />
                                 <br />
-                                <input type="file"   name="file" id="" className="form-control" onChange={handleimageuopload} />
+                                <input type="file" name="file" id="" className="form-control" onChange={handleimageuopload} />
                                 {/* <br />
                                 <label htmlFor="name" className="form-label">Uploaded image :</label><br />
                                 <img src={filename} alt="" className='imgremark' onChange={handelChange} /> <br /> */}

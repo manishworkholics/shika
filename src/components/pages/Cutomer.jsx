@@ -5,16 +5,14 @@ import { Link } from 'react-router-dom';
 
 const Cutomer = () => {
   const URL = process.env.REACT_APP_URL;
-  // const usertoken = sessionStorage.getItem('token')
-  // if (!usertoken) {
-  //   return <Home />
-  // }
+  const usertoken = sessionStorage.getItem('token')
+
 
   const [customers, setCustomers] = useState([]);
   const [filterValue, setFilterValue] = useState('');
 
   const getCustomer = () => {
-    
+
     fetch(`${URL}/getcustomer`)
       .then((res) => {
         return res.json()
@@ -41,6 +39,10 @@ const Cutomer = () => {
     setFilterValue(e.target.value);
   };
 
+  if (!usertoken) {
+    return <Home />
+  }
+
   return (
     <>
       < Navbar />
@@ -66,12 +68,12 @@ const Cutomer = () => {
         <div className='row'>
           <div className='col-md-12'>
             <div className='d-flex justify-content-between'>
-            <input
-        type="text"
-        placeholder="Search Customer"
-        value={filterValue}
-        onChange={handleInputChange}
-      />
+              <input
+                type="text"
+                placeholder="Search Customer"
+                value={filterValue}
+                onChange={handleInputChange}
+              />
               <Link type="button" className="btn btn-info my-1" to="/shika/add-customer" >Add  <span><i class="fa-solid fa-plus"></i></span></Link>
             </div>
             <div className="card tbl-card mt-3">
@@ -99,8 +101,8 @@ const Cutomer = () => {
                           <td>{val?.businessAddress}</td>
                           <td>{val?.totalamount}</td>
                           <td>
-                          <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
-                          <Link to={`/shika/entryBycustomerId/${val?._id}`}  type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>
+                            <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/entryBycustomerId/${val?._id}`} type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>
                           </td>
                         </tr>
                       )

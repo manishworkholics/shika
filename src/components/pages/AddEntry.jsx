@@ -5,10 +5,12 @@ import { useNavigate } from "react-router-dom";
 import loaderimg from "../../assets/loader.gif";
 
 import Select from 'react-select';
+import Home from "./Home";
 
 const AddEntry = () => {
   const URL = process.env.REACT_APP_URL;
 
+  const usertoken = sessionStorage.getItem('token')
   const navigate = useNavigate();
 
   const [data, setData] = useState({
@@ -19,7 +21,7 @@ const AddEntry = () => {
   });
   const [filename, setfilename] = useState("");
   const [customer, setcustomer] = useState("");
-  const[useramount,setuseramount]=useState(0);
+  const [useramount, setuseramount] = useState(0);
   // const [dummyforchckdropdown, setdummyforchckdropdown] = useState('');
   // const [pendingAmt, setpendingAmt] = useState(0);
   const [showloader, setShowLoader] = useState("none");
@@ -70,8 +72,7 @@ const AddEntry = () => {
   const handelChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
-    if (name === "id")
-    {
+    if (name === "id") {
       getCustomerdetailById(value);
     }
     if (name === "amttype") {
@@ -121,13 +122,12 @@ const AddEntry = () => {
   const Submit = async (e) => {
     e.preventDefault();
     const { id, date, remark, amount } = data;
-   if(amount_given_By_user){
-    if(amount > useramount )
-    {
-   alert(`Please select Less Amount .Recovery Amount Required ${useramount}`);
-   return;
+    if (amount_given_By_user) {
+      if (amount > useramount) {
+        alert(`Please select Less Amount .Recovery Amount Required ${useramount}`);
+        return;
+      }
     }
-  }
     // console.log(amount_given_To_user);
     // console.log(amount_given_By_user);
 
@@ -155,12 +155,15 @@ const AddEntry = () => {
     }
   };
 
- 
-  console.log(data);
+
   useEffect(() => {
     getCustomer();
   }, []);
-  
+
+  if (!usertoken) {
+    return <Home />
+  }
+
 
   return (
     <>
@@ -199,19 +202,19 @@ const AddEntry = () => {
               <div className="card-heading">
                 <h4>Add Entry</h4>
               </div>
-            
+
               <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">
                   Cutomer Name :
                 </label>
                 <Select
-      value={selectedOption}
-      name="id" onChange={handleChange2}
-      options={options}
-      isSearchable={true}
-      class="form-control"
-      placeholder="Search..."
-    />
+                  value={selectedOption}
+                  name="id" onChange={handleChange2}
+                  options={options}
+                  isSearchable={true}
+                  class="form-control"
+                  placeholder="Search..."
+                />
                 {/* <select class="form-control" name="id" onChange={handelChange}>
                   <option value="" disabled selected hidden>
                     Select Customer name
@@ -252,11 +255,11 @@ const AddEntry = () => {
                                 <img src={filename} alt="" className='imgremark' onChange={handelChange} /> <br /> */}
               </div>
               <label htmlFor="name" className="form-label">
-                  Pending Amount : <span style ={{color:"red" }}> <b>Rs : {useramount}</b></span>
-                </label>
+                Pending Amount : <span style={{ color: "red" }}> <b>Rs : {useramount}</b></span>
+              </label>
               <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">
-                  Amount :  
+                  Amount :
                 </label>
                 <input
                   type="number"
@@ -312,8 +315,8 @@ const AddEntry = () => {
                                 <label htmlFor="name" className="form-label ">Old Pending Amount: {pendingAmt}</label>
                             
                             </div> */}
-             
-              
+
+
               <button type="submit" className="btn btn-info" onClick={Submit}>
                 Update
               </button>

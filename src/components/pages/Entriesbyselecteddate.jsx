@@ -1,63 +1,64 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../Template/Navbar'
 import Home from './Home';
-import { Link ,useParams} from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import dateFormat from "dateformat";
 
 
 const Entriesbyselecteddate = () => {
-  // const usertoken = sessionStorage.getItem('token')
+  const usertoken = sessionStorage.getItem('token')
   const URL = process.env.REACT_APP_URL;
-  // if (!usertoken) {
-  //   return <Home />
-  // }
-  const [data, setdata] = useState('')
-// const [selectdate,setSelectdate]=useState('');
 
-const handleDateChange = (e) => {
+  const [data, setdata] = useState('')
+  // const [selectdate,setSelectdate]=useState('');
+
+  const handleDateChange = (e) => {
     const value = e.target.value
     // setSelectdate(value);
     getdata(value);
-}
+  }
 
 
   const getdata = async (selectdate) => {
-   
+
     // const today = new Date();
- 
+
     // const dd = String(today.getDate()).padStart(2, '0');
     // const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
     // const yyyy = today.getFullYear();
-    
+
     // const formattedDate = `${yyyy}-${mm}-${dd}`;
-  
+
     const fetchData = fetch(`${URL}/getAllremarkTodayDate`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ date: selectdate  })
-        });
-        const response = await fetchData;
-        const responseData=await response.json();
-         if (response.status === 200) {
-            setdata(responseData)
-        } else {
-          //  console.error("Error:", responseData);
-          setdata('');
-            alert("No Data Found");
-        }
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ date: selectdate })
+    });
+    const response = await fetchData;
+    const responseData = await response.json();
+    if (response.status === 200) {
+      setdata(responseData)
+    } else {
+      //  console.error("Error:", responseData);
+      setdata('');
+      alert("No Data Found");
+    }
   }
 
-//   useEffect(() => {
-//    // getdata();
-//   }, [])
-const formatDate2 = (dateString) => {
-  const date = new Date(dateString);
-  // Add one day
-  date.setDate(date.getDate() + 1);
-  const options = { day: 'numeric', month: 'long', year: 'numeric' };
-  return date.toLocaleDateString('en-US', options);
-};
+  //   useEffect(() => {
+  //    // getdata();
+  //   }, [])
+  const formatDate2 = (dateString) => {
+    const date = new Date(dateString);
+    // Add one day
+    date.setDate(date.getDate() + 1);
+    const options = { day: 'numeric', month: 'long', year: 'numeric' };
+    return date.toLocaleDateString('en-US', options);
+  };
 
+  if (!usertoken) {
+    return <Home />
+  }
 
   return (
     <>
@@ -85,21 +86,21 @@ const formatDate2 = (dateString) => {
             <div className='d-flex justify-content-end'>
               {/* <Link type="button" className="btn btn-info my-1" to="/shika/add-entry" >Add  <span><i class="fa-solid fa-plus"></i></span></Link> */}
               <div className="mb-3 mt-3">
-                                <label htmlFor="name" className="form-label">Date :</label>
-                                <input type="date" className="form-control" name="date"  onChange={handleDateChange} />
-                            </div>
+                <label htmlFor="name" className="form-label">Date :</label>
+                <input type="date" className="form-control" name="date" onChange={handleDateChange} />
+              </div>
             </div>
             <div className="card tbl-card mt-3">
               <div className="table-responsive">
                 <table className="table table-striped tbl-blue-theme">
                   <thead>
                     <tr>
-                    <th>S.no</th>
+                      <th>S.no</th>
                       <th>Name</th>
                       <th>Pending Amount</th>
-                     
+
                       <th>Remark</th>
-                       <th>For Date</th>
+                      <th>For Date</th>
                       <th>Created Date</th>
                       <th>Bill</th>
                       <th className='text-center'>Action</th></tr>
@@ -108,9 +109,9 @@ const formatDate2 = (dateString) => {
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                          <td className={val?.amount_given_To_user  ? 'tb_bg_red':'tb_bg_green' }>{index + 1}</td>
-                          <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-black" >{val?.id?.name} </Link>
-                         </td>
+                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : 'tb_bg_green'}>{index + 1}</td>
+                          <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`} className="text-black" >{val?.id?.name} </Link>
+                          </td>
                           <td>{val?.id?.totalamount}</td>
                           <td>{val?.remark}</td>
                           {/* {val?.date.split('T')[0]} */}
@@ -118,9 +119,9 @@ const formatDate2 = (dateString) => {
                           <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td>
                           <td><img src={val?.image} alt="img" className='imgremark' /></td>
                           <td>
-                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val,name:val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val, name: val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                           </td>
-                          
+
                         </tr>
                       )
                     })}

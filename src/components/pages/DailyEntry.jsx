@@ -7,11 +7,9 @@ import dateFormat from "dateformat";
 
 const DailyEntry = () => {
   const URL = process.env.REACT_APP_URL;
-  // const usertoken = sessionStorage.getItem('token')
+  const usertoken = sessionStorage.getItem('token')
 
-  // if (!usertoken) {
-  //   return <Home />
-  // }
+
   const [data, setdata] = useState('')
 
   const getdata = () => {
@@ -34,6 +32,10 @@ const DailyEntry = () => {
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   };
+
+  if (!usertoken) {
+    return <Home />
+  }
 
   return (
     <>
@@ -66,12 +68,12 @@ const DailyEntry = () => {
                 <table className="table table-striped tbl-blue-theme">
                   <thead>
                     <tr>
-                    <th>S.no</th>
+                      <th>S.no</th>
                       <th>Name</th>
                       <th>Amount</th>
-                     
+
                       <th>Remark</th>
-                       <th>For Date</th>
+                      <th>For Date</th>
                       <th>Created Date</th>
                       <th>Bill</th>
                       <th className='text-center'>Action</th>
@@ -81,20 +83,20 @@ const DailyEntry = () => {
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                        <td className={val?.amount_given_To_user  ? 'tb_bg_red':'tb_bg_green' }>{index + 1}</td>
-                         
-                          <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`}  className="text-black" >{val?.id?.name} </Link>
-                         </td>
-                         <td>{val?.amount}</td>
+                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : 'tb_bg_green'}>{index + 1}</td>
+
+                          <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`} className="text-black" >{val?.id?.name} </Link>
+                          </td>
+                          <td>{val?.amount}</td>
                           <td>{val?.remark}</td>
                           {/* {val?.date.split('T')[0]} */}
                           <td> {formatDate2(val?.date.split('T')[0])}</td>
                           <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td>
                           <td><img src={val?.image} alt="img" className='imgremark' /></td>
                           <td>
-                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val,name:val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val, name: val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                           </td>
-                          
+
                         </tr>
                       )
                     })}

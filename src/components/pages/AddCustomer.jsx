@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import Navbar from '../Template/Navbar'
 import { useNavigate } from 'react-router-dom'
+import Home from './Home';
 
 
 
 const AddCustomer = () => {
     const URL = process.env.REACT_APP_URL;
- 
+
+    const usertoken = sessionStorage.getItem('token')
     const navigate = useNavigate();
     const [data, setdata] = useState({ name: '', mobile: '', address: '', businessAddress: '' })
 
@@ -25,15 +27,17 @@ const AddCustomer = () => {
             body: JSON.stringify({ name: name, mobile: mobile, address: address, businessAddress: businessAddress })
         });
         const response = await fetchData;
-        const responseData=await response.json();
-         if (response.status === 200) {
+        const responseData = await response.json();
+        if (response.status === 200) {
             navigate("/shika/customer");
         } else {
             console.error("Error:", responseData);
             alert("Already Exist");
         }
     }
-
+    if (!usertoken) {
+        return <Home />
+    }
 
     return (
         <>
