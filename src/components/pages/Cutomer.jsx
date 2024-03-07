@@ -68,7 +68,7 @@ const Cutomer = () => {
             <div className='d-flex justify-content-between'>
             <input
         type="text"
-        placeholder="Search by customer name"
+        placeholder="Search Customer"
         value={filterValue}
         onChange={handleInputChange}
       />

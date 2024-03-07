@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import loaderimg from "../../assets/loader.gif";
 
+import Select from 'react-select';
+
 const AddEntry = () => {
   const URL = process.env.REACT_APP_URL;
 
@@ -23,6 +25,22 @@ const AddEntry = () => {
   const [showloader, setShowLoader] = useState("none");
   const [amount_given_To_user, setamount_given_To_user] = useState(false);
   const [amount_given_By_user, setamount_given_By_user] = useState(false);
+  // const options = [
+  //   { value: '1', label: 'Option 1' },
+  //   { value: '2', label: 'Option 2' },
+  //   { value: '3', label: 'Option 3' },
+  //   { value: '4', label: 'Option 4' },
+  //   { value: '5', label: 'Option 5' }
+  // ];
+  const [options, setOptions] = useState([]);
+
+  const [selectedOption, setSelectedOption] = useState(null);
+
+  const handleChange2 = selectedOption => {
+    setSelectedOption(selectedOption);
+    console.log(`Option selected:`, selectedOption);
+    // Perform further actions with the selected option
+  };
 
   const getCustomer = () => {
     fetch(`${URL}/getcustomer`)
@@ -31,6 +49,12 @@ const AddEntry = () => {
       })
       .then((data) => {
         setcustomer(data);
+        const transformedOptions = data?.data?.map(item => ({
+          value: item._id,
+          label: item.name
+        }));
+        // Set the options state with the transformed data
+        setOptions(transformedOptions);
       });
   };
   const getCustomerdetailById = (id) => {
@@ -111,7 +135,8 @@ const AddEntry = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: id,
+        id: selectedOption,
+        // id: id,
         date: date,
         remark: remark,
         amount: amount,
@@ -129,10 +154,13 @@ const AddEntry = () => {
       alert("Internal Server Error");
     }
   };
+
+ 
   console.log(data);
   useEffect(() => {
     getCustomer();
   }, []);
+  
 
   return (
     <>
@@ -143,7 +171,7 @@ const AddEntry = () => {
             <div className="container">
               <div className="row">
                 <div className="col-12">
-                  <h2 className="banner-heading-h2">Add Entry</h2>
+                  <h2 className="banner-heading-h2">Add Entryyy</h2>
                   <h3 className="banner-subheading-h3">
                     Home{" "}
                     <span className="mx-3">
@@ -171,11 +199,20 @@ const AddEntry = () => {
               <div className="card-heading">
                 <h4>Add Entry</h4>
               </div>
+            
               <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">
                   Cutomer Name :
                 </label>
-                <select class="form-control" name="id" onChange={handelChange}>
+                <Select
+      value={selectedOption}
+      name="id" onChange={handleChange2}
+      options={options}
+      isSearchable={true}
+      class="form-control"
+      placeholder="Search..."
+    />
+                {/* <select class="form-control" name="id" onChange={handelChange}>
                   <option value="" disabled selected hidden>
                     Select Customer name
                   </option>
@@ -186,7 +223,7 @@ const AddEntry = () => {
                       </option>
                     );
                   })}
-                </select>
+                </select> */}
               </div>
               <div
                 className="loader-container "
