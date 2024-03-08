@@ -135,7 +135,27 @@ const AddEntry = () => {
     }
     // console.log(amount_given_To_user);
     // console.log(amount_given_By_user);
+    if( !selectedOption)
+{
+  alert("Please Select User");
+  return;
+}
+if(!amount)
+{
+  alert("Please Enter Amount");
+  return;
+}
+if(!date )
+{
+  alert("Please Select Date");
+  return;
+}
 
+if(!amount_given_To_user || !amount_given_By_user)
+{
+  alert("Please Select Amount Type");
+  return;
+}
     const fetchdata = fetch(`${URL}/addremark`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -324,7 +344,7 @@ const AddEntry = () => {
 
 
               <button type="submit" className="btn btn-info" onClick={Submit}>
-                Update
+                Add
               </button>
             </div>
           </div>
