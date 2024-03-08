@@ -19,6 +19,10 @@ const AddCustomer = () => {
     }
 
     const submit = async (e) => {
+        if(!name|| !mobile || !address || !businessAddress)
+        {alert("All Field Required");
+        return;
+        }
         e.preventDefault();
         const { name, mobile, address, businessAddress } = data
         const fetchData = fetch(`${URL}/insertcustomer`, {
