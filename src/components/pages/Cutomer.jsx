@@ -17,7 +17,7 @@ const Cutomer = () => {
       .then((res) => {
         return res.json()
       }).then((data) => {
-        setCustomers(data.data)
+        setCustomers(data?.data)
       })
   }
 
@@ -29,8 +29,8 @@ const Cutomer = () => {
     if (!value) {
       return customers;
     }
-    return customers.filter(customer =>
-      customer.name.toLowerCase().includes(value.toLowerCase())
+    return customers?.filter(customer =>
+      customer?.name?.toLowerCase().includes(value?.toLowerCase())
     );
   };
 
@@ -100,9 +100,9 @@ const Cutomer = () => {
                           <td>{val?.address}</td>
                           <td>{val?.businessAddress}</td>
                           <td>{val?.totalamount}</td>
-                          <td>
-                            <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>
-                            <Link to={`/shika/entryBycustomerId/${val?._id}`} type="button" class="btn btn-warning mx-1 mt-2" >View All Entries </Link>
+                          <td className='btn_td'>
+                            <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1 btn_customer" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/entryBycustomerId/${val?._id}`} type="button" class="btn btn-warning mx-1 mt-2 btn_customer" >View</Link>
                           </td>
                         </tr>
                       )

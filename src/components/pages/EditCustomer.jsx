@@ -11,7 +11,7 @@ const EditCustomer = () => {
     const navigate = useNavigate();
     const URL = process.env.REACT_APP_URL;
 
-    const [customer, setcustomer] = useState({ name: data.name, mobile: data.mobile, address: data.address, businessAddress: data.businessAddress })
+    const [customer, setcustomer] = useState({ name: data?.name, mobile: data?.mobile, address: data?.address, businessAddress: data?.businessAddress })
 
 
     const handleChange = (e) => {
@@ -100,19 +100,19 @@ const EditCustomer = () => {
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Name :</label>
-                                <input type="text" className="form-control" name="name" value={customer.name} onChange={handleChange} />
+                                <input type="text" className="form-control" name="name" value={customer?.name} onChange={handleChange} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Number :</label>
-                                <input type="text" className="form-control" name="mobile" value={customer.mobile} onChange={handleChange} />
+                                <input type="text" className="form-control" name="mobile" value={customer?.mobile} onChange={handleChange} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Cutomer Adress :</label>
-                                <input type="text" className="form-control" name="address" value={customer.address} onChange={handleChange} />
+                                <input type="text" className="form-control" name="address" value={customer?.address} onChange={handleChange} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Business Adress :</label>
-                                <input type="text" className="form-control" name="businessAddress" value={customer.businessAddress} onChange={handleChange} />
+                                <input type="text" className="form-control" name="businessAddress" value={customer?.businessAddress} onChange={handleChange} />
                             </div>
                             <button type="submit" className="btn btn-info" onClick={handleSubmit}>Update</button>
                         </div>

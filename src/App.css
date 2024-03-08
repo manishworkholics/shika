@@ -141,6 +141,16 @@ body {
     }
 }
 
+.btn_td a{
+    width: fit-content;
+    height: max-content;
+    margin: 0px 0px 0px 4px !important;
+    padding: 4px 10px !important;
+    display: inline-block;
+}
+
+
+
 /*--------------------- card-Style --------------------*/
 .edit-customer-card-container {
     padding: 0px 110px;
@@ -170,7 +180,7 @@ body {
     line-height: normal;
 }
 
-.imgremark{
+.imgremark {
     width: 120px;
 }
 
@@ -178,23 +188,28 @@ body {
     .edit-customer-card-container {
         padding: 0px 15px;
     }
-    .edit-customer-card{
+
+    .edit-customer-card {
         padding: 30px;
     }
+
     .edit-customer-card-left {
         border-right: none;
         border-bottom: 2px solid #154171;
         padding-right: 12px;
         padding-bottom: 25px;
     }
+
     .edit-customer-card-right {
         padding-left: 12px;
         margin-top: 30px;
     }
-    .edit-customer-card-right .col-md-6{
+
+    .edit-customer-card-right .col-md-6 {
         margin-bottom: 10px;
     }
-    .edit-customer-card-right .col-md-6 .btn-secondary{
+
+    .edit-customer-card-right .col-md-6 .btn-secondary {
         margin-top: 5px;
     }
 }
@@ -203,17 +218,21 @@ body {
     .edit-customer-card-container {
         padding: 0px;
     }
-    .edit-customer-card{
+
+    .edit-customer-card {
         padding: 30px;
     }
+
     .edit-customer-card-left {
         border-right: 2px solid #154171;
         padding-right: 26px;
     }
+
     .edit-customer-card-right {
         padding-left: 26px;
     }
-    .edit-customer-card-right .col-md-6 .btn-secondary{
+
+    .edit-customer-card-right .col-md-6 .btn-secondary {
         margin-top: 15px;
     }
 }
@@ -388,15 +407,18 @@ body {
     }
 
 }
+
 /* FOr table red gree */
 .tb_bg_red {
-     color: #fff;
+    color: #fff;
     background-color: #e7324a !important;
 }
+
 .tb_bg_green {
     color: #fff;
-   background-color: #70f576 !important;
+    background-color: #70f576 !important;
 }
+
 @media only screen and (min-width:768px) and (max-width:991px) {
     table {
         width: max-content !important;
@@ -408,40 +430,49 @@ body {
         width: 100% !important;
     }
 }
+
 @media only screen and (min-width:1025px) and (max-width:1450px) {
     .nav-link {
         font-size: 16px;
         font-weight: 500;
     }
+
     .banner-heading-h2 {
         font-size: 30px;
         font-weight: 500;
     }
+
     .banner-subheading-h3 {
         font-size: 16px;
         font-weight: 500;
     }
+
     .btn {
         font-size: 15px;
         font-weight: 500;
         padding: 3px 12px !important;
     }
+
     .btn span {
         font-size: 15px;
         font-weight: 500;
     }
+
     .tbl-blue-theme td {
         padding: 8px 20px !important;
         font-size: 14px;
     }
+
     .tbl-blue-theme th {
         padding: 8px 20px !important;
         font-size: 16px;
         font-weight: 500;
     }
-    .daily-entry-data-tbl td{
+
+    .daily-entry-data-tbl td {
         padding: 0px 10px !important;
     }
+
     .card-heading h4 {
         font-size: 20px;
     }

@@ -40,7 +40,7 @@ const AddEntry = () => {
 
   const handleChange2 = selectedOption => {
  
-    setSelectedOption(selectedOption?.value);
+    setSelectedOption(selectedOption);
     // alert(selectedOption?.value);
     getCustomerdetailById(selectedOption?.value);
     console.log(`Option selected:`, selectedOption);
@@ -140,7 +140,7 @@ const AddEntry = () => {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        id: selectedOption,
+        id: selectedOption.value,
         // id: id,
         date: date,
         remark: remark,

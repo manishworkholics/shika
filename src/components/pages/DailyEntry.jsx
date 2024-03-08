@@ -71,8 +71,7 @@ const DailyEntry = () => {
                       <th>S.no</th>
                       <th>Name</th>
                       <th>Amount</th>
-
-                      <th>Remark</th>
+                       <th>Remark</th>
                       <th>For Date</th>
                       <th>Created Date</th>
                       <th>Bill</th>
