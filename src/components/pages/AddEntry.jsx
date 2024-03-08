@@ -39,9 +39,14 @@ const AddEntry = () => {
   const [selectedOption, setSelectedOption] = useState(null);
 
   const handleChange2 = selectedOption => {
-    setSelectedOption(selectedOption);
+ 
+    setSelectedOption(selectedOption?.value);
+    // alert(selectedOption?.value);
+    getCustomerdetailById(selectedOption?.value);
     console.log(`Option selected:`, selectedOption);
     // Perform further actions with the selected option
+   
+   
   };
 
   const getCustomer = () => {
@@ -65,7 +70,7 @@ const AddEntry = () => {
         return res.json();
       })
       .then((data) => {
-        setuseramount(data.data.totalamount);
+        setuseramount(data?.data?.totalamount);
       });
   };
 
@@ -200,7 +205,7 @@ const AddEntry = () => {
           <div className="row">
             <div className="col-md-12 ">
               <div className="card-heading">
-                <h4>Add Entry</h4>
+                <h4>Add Entry </h4>
               </div>
 
               <div className="mb-3 mt-3">
@@ -209,7 +214,8 @@ const AddEntry = () => {
                 </label>
                 <Select
                   value={selectedOption}
-                  name="id" onChange={handleChange2}
+                  name="id" 
+                  onChange={handleChange2}
                   options={options}
                   isSearchable={true}
                   class="form-control"
