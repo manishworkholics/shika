@@ -418,6 +418,10 @@ body {
     color: #fff;
     background-color: #70f576 !important;
 }
+.tb_bg_blue {
+    color: #fff;
+    background-color: #0a62b4 !important;
+}
 
 @media only screen and (min-width:768px) and (max-width:991px) {
     table {

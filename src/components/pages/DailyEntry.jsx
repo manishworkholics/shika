@@ -82,7 +82,7 @@ const DailyEntry = () => {
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : 'tb_bg_green'}>{index + 1}</td>
+                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : val?.amount_given_By_user ? 'tb_bg_green':'tb_bg_blue'}>{index + 1}</td>
 
                           <td>  <Link to={`/shika/entryBycustomerId/${val?.id?._id}`} className="text-black" >{val?.id?.name} </Link>
                           </td>

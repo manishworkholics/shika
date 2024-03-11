@@ -20,6 +20,7 @@ const AddEntry = () => {
     amount: "",
     createdAt:""
   });
+  
   const [filename, setfilename] = useState("");
   const [customer, setcustomer] = useState("");
   const [useramount, setuseramount] = useState(0);
