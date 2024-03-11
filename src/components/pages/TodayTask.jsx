@@ -104,7 +104,9 @@ const TodayTask = () => {
                           <td>{val?.remark}</td>
                           {/* {val?.date.split('T')[0]} */}
                           <td> {formatDate2(val?.date.split('T')[0])}</td>
-                          <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td>
+                          <td> {formatDate2(val?.createdAt.split('T')[0])}</td>
+                        
+                          {/* <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td> */}
                           <td><img src={val?.image} alt="img" className='imgremark' /></td>
                           <td>
                             <Link to={`/shika/edit-entry/${val?._id}`} state={{ data: val, name: val?.id?.name }} type="button" class="btn btn-warning mx-1" >Edit <span class="material-symbols-outlined">Edit</span></Link>

@@ -17,7 +17,7 @@ const Editentry = () => {
 
     const [filename, setfilename] = useState('');
 
-    const [editremark, seteditremark] = useState({ name: data?.name, date: data?.date, remark: data?.remark, image: data?.image })
+    const [editremark, seteditremark] = useState({ name: data?.name, date: data?.date, remark: data?.remark, image: data?.image ,createdAt:data?.createdAt })
 
 
     const handelChange = (e) => {
@@ -107,8 +107,12 @@ const Editentry = () => {
                                 <input type="text" className="form-control" name="name" value={name} placeholder='Enter contact no.' />
                             </div>
                             <div className="mb-3 mt-3">
-                                <label htmlFor="name" className="form-label">Date :</label>
+                                <label htmlFor="name" className="form-label">Date Give For Return Amount:</label>
                                 <input type="date" className="form-control" name="date" value={new Date(editremark?.date).toISOString().split('T')[0]} placeholder='Enter contact no.' onChange={handelChange} />
+                            </div>
+                            <div className="mb-3 mt-3">
+                                <label htmlFor="name" className="form-label">Entry created Date:</label>
+                                <input type="date" className="form-control" name="createdAt" value={new Date(editremark?.createdAt).toISOString().split('T')[0]} placeholder='Enter createdAt' onChange={handelChange} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Remark :</label>

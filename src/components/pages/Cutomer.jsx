@@ -101,7 +101,7 @@ const Cutomer = () => {
                           <td>{val?.businessAddress}</td>
                           <td>{val?.totalamount}</td>
                           <td className='btn_td'>
-                            <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" class="btn btn-warning mx-1 btn_customer" >Edit <span class="material-symbols-outlined">Edit</span></Link>
+                            <Link to={`/shika/edit-customer/${val?._id}`} state={{ data: val }} type="button" className="btn btn-warning mx-1 btn_customer mb-5" >Edit <span class="material-symbols-outlined">Edit</span></Link>
                             <Link to={`/shika/entryBycustomerId/${val?._id}`} type="button" class="btn btn-warning mx-1 mt-2 btn_customer" >View</Link>
                           </td>
                         </tr>

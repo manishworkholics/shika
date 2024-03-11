@@ -18,6 +18,7 @@ const AddEntry = () => {
     date: "",
     remark: "",
     amount: "",
+    createdAt:""
   });
   const [filename, setfilename] = useState("");
   const [customer, setcustomer] = useState("");
@@ -126,7 +127,7 @@ const AddEntry = () => {
   // console.log(amount_given_By_user);
   const Submit = async (e) => {
     e.preventDefault();
-    const { id, date, remark, amount } = data;
+    const { id, date, remark, amount,createdAt } = data;
     if (amount_given_By_user) {
       if (amount > useramount) {
         alert(`Please select Less Amount .Recovery Amount Required ${useramount}`);
@@ -150,12 +151,17 @@ if(!date )
   alert("Please Select Date");
   return;
 }
-
-if(!amount_given_To_user || !amount_given_By_user)
+if(!createdAt )
 {
-  alert("Please Select Amount Type");
+  alert("Please Select created Date");
   return;
 }
+
+// if(!amount_given_To_user || !amount_given_By_user)
+// {
+//   alert("Please Select Amount Type");
+//   return;
+// }
     const fetchdata = fetch(`${URL}/addremark`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -168,6 +174,7 @@ if(!amount_given_To_user || !amount_given_By_user)
         image: filename,
         amount_given_To_user: amount_given_To_user,
         amount_given_By_user: amount_given_By_user,
+        createdAt
       }),
     });
     const response = await fetchdata;
@@ -323,6 +330,18 @@ if(!amount_given_To_user || !amount_given_By_user)
               </div>
               <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">
+                 Create Entry Date:
+                </label>
+                <input
+                  type="date"
+                  className="form-control"
+                  name="createdAt"
+                  value={data.createdAt}
+                  onChange={handelChange}
+                />
+              </div>
+              <div className="mb-3 mt-3">
+                <label htmlFor="name" className="form-label">
                   Amount Type:
                 </label>
                 <select
@@ -344,7 +363,7 @@ if(!amount_given_To_user || !amount_given_By_user)
 
 
               <button type="submit" className="btn btn-info" onClick={Submit}>
-                Add
+                Add Entry
               </button>
             </div>
           </div>
