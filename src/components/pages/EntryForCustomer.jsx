@@ -88,7 +88,7 @@ const EntryForCustomer = () => {
                     {data?.data?.map((val, index) => {
                       return (
                         <tr>
-                          <td className={val?.amount_given_To_user ? 'tb_bg_red' : 'tb_bg_green'}>{index + 1}</td>
+                        <td className={val?.amount_given_To_user ? 'tb_bg_red' : val?.amount_given_By_user ? 'tb_bg_green':'tb_bg_blue'}>{index + 1}</td>
                           <td>{val?.id?.name}</td>
                           <td>{val?.amount}</td>
                           <td>{val?.remark}</td>
