@@ -19,12 +19,29 @@ const AddCustomer = () => {
     }
 
     const submit = async (e) => {
-        if(!name|| !mobile || !address || !businessAddress)
-        {alert("All Field Required");
-        return;
-        }
+       
         e.preventDefault();
         const { name, mobile, address, businessAddress } = data
+        if(!name)
+        {
+        alert("Name Field Required");
+        return;
+        }
+        if( !mobile )
+        {
+        alert("Mobile Required");
+        return;
+        }
+        if( !address )
+        {
+        alert("Address Required");
+        return;
+        }
+        if(!businessAddress)
+        {
+        alert("Business Address Required");
+        return;
+        }
         const fetchData = fetch(`${URL}/insertcustomer`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -35,8 +52,9 @@ const AddCustomer = () => {
         if (response.status === 200) {
             navigate("/shika/customer");
         } else {
+            alert("Data Already Exist");
             console.error("Error:", responseData);
-            alert("Already Exist");
+            
         }
     }
     if (!usertoken) {

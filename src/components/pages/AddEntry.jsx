@@ -20,7 +20,8 @@ const AddEntry = () => {
     amount: "",
     createdAt:""
   });
-  
+  const [loading, setLoading] = useState(false);
+   
   const [filename, setfilename] = useState("");
   const [customer, setcustomer] = useState("");
   const [useramount, setuseramount] = useState(0);
@@ -128,9 +129,11 @@ const AddEntry = () => {
   // console.log(amount_given_By_user);
   const Submit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const { id, date, remark, amount,createdAt } = data;
     if (amount_given_By_user) {
       if (amount > useramount) {
+        setLoading(false);
         alert(`Please select Less Amount .Recovery Amount Required ${useramount}`);
         return;
       }
@@ -139,21 +142,25 @@ const AddEntry = () => {
     // console.log(amount_given_By_user);
     if( !selectedOption)
 {
+  setLoading(false);
   alert("Please Select User");
   return;
 }
 if(!amount)
 {
+  setLoading(false);
   alert("Please Enter Amount");
   return;
 }
 if(!date )
 {
+  setLoading(false);
   alert("Please Select Date");
   return;
 }
 if(!createdAt )
 {
+  setLoading(false);
   alert("Please Select created Date");
   return;
 }
@@ -181,8 +188,11 @@ if(!createdAt )
     const response = await fetchdata;
     const responseData = await response.json();
     if (response.status === 200) {
+      setLoading(false);
+      alert("Entry Added Successfully");
       navigate("/shika/daily-entry");
     } else {
+      setLoading(false);
       console.error("Error:", responseData);
       alert("Internal Server Error");
     }
@@ -352,8 +362,8 @@ if(!createdAt )
                 >
                   <option value="">Select Amount Type</option>
 
-                  <option value="amount_given_To_user">CREDIT</option>
-                  <option value="amount_given_By_user">DEBIT</option>
+                  <option value="amount_given_To_user">DEBIT</option>
+                  <option value="amount_given_By_user">CREDIT</option>
                   <option value="NoAmount">NoAmount</option>
                 </select>
               </div>
@@ -363,9 +373,11 @@ if(!createdAt )
                             </div> */}
 
 
-              <button type="submit" className="btn btn-info" onClick={Submit}>
+                            {loading ?  <button  className="btn btn-info" >
+                Loading ...
+              </button> : <button type="submit" className="btn btn-info" onClick={Submit}>
                 Add Entry
-              </button>
+              </button> }
             </div>
           </div>
         </div>
