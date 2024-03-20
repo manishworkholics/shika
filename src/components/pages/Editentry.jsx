@@ -73,7 +73,7 @@ const Editentry = () => {
     if (!usertoken) {
         return <Home />
     }
-
+ 
 
     return (
         <>
@@ -108,7 +108,7 @@ const Editentry = () => {
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Date Give For Return Amount:</label>
-                                <input type="date" className="form-control" name="date" value={new Date(editremark?.date).toISOString().split('T')[0]} placeholder='Enter contact no.' onChange={handelChange} />
+                                <input type="date" className="form-control" name="date" value={editremark?.date? new Date(editremark?.date).toISOString().split('T')[0]: null } placeholder='Enter contact no.' onChange={handelChange} />
                             </div>
                             <div className="mb-3 mt-3">
                                 <label htmlFor="name" className="form-label">Entry created Date:</label>

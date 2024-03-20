@@ -80,9 +80,16 @@ const AddEntry = () => {
   const handelChange = (e) => {
     const name = e.target.name;
     const value = e.target.value;
+    
     if (name === "id") {
       getCustomerdetailById(value);
     }
+    // if (name === "amount") {
+    //   if (value < 0) {
+    //     setData({ ...data, amount:0 });
+    //   }
+     
+    // }
     if (name === "amttype") {
       if (value === "amount_given_To_user") {
         setamount_given_To_user(true);
@@ -152,12 +159,12 @@ if(!amount)
   alert("Please Enter Amount");
   return;
 }
-if(!date )
-{
-  setLoading(false);
-  alert("Please Select Date");
-  return;
-}
+// if(!date )
+// {
+//   setLoading(false);
+//   alert("Please Select Date");
+//   return;
+// }
 if(!createdAt )
 {
   setLoading(false);
@@ -207,7 +214,20 @@ if(!createdAt )
     return <Home />
   }
 
-
+  const handleKeyDown = (e) => {
+    if (e.keyCode === 38 || e.keyCode === 40) {
+      e.preventDefault();
+    }
+    // Prevent the entry of dashes
+    if (e.key === '-') {
+      e.preventDefault();
+    }
+    if (e.key === '.') {
+        e.preventDefault();
+      }
+  };
+ 
+  
   return (
     <>
       <Navbar />
@@ -311,7 +331,11 @@ if(!createdAt )
                   name="amount"
                   placeholder="0"
                   value={data.amount}
+                  min="0"
+                  onKeyDown={handleKeyDown}
                   onChange={handelChange}
+                  
+                 
                 />
               </div>
               <div className="mb-3 mt-3">
