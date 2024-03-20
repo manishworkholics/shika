@@ -53,14 +53,14 @@ const Editentry = () => {
     };
 
     const handleSubmit = async () => {
-        const { date, remark, image } = editremark
+        const { date, remark, image,createdAt } = editremark
         const fetchdata = fetch(`${URL}/updateremarkid/${data._id}`, {
             method: 'PUT',
             headers: {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ date: date, remark: remark, image: filename ? filename : image })
+            body: JSON.stringify({ date: date,createdAt, remark: remark, image: filename ? filename : image })
         })
         const response = await fetchdata;
         if (response.status === 200) {
