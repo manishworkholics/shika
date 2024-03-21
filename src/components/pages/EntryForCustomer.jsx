@@ -93,7 +93,9 @@ const EntryForCustomer = () => {
                           <td>{val?.amount}</td>
                           <td>{val?.remark}</td>
                           {/* {val?.date.split('T')[0]} */}
-                          <td> {formatDate2(val?.date.split('T')[0])}</td>
+                          <td> {val?.date? formatDate2(val?.date?.split('T')[0]):"No Date Selected"}</td>
+                         
+                          {/* <td> {formatDate2(val?.date.split('T')[0])}</td> */}
                           <td> {formatDate2(val?.createdAt.split('T')[0])}</td>
                           {/* <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td> */}
                           <td><img src={val?.image} alt="img" className='imgremark' /></td>
