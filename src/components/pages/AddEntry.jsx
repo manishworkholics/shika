@@ -265,22 +265,7 @@ if(!createdAt )
               <div className="card-heading">
                 <h4>Add Entry </h4>
               </div>
-              <div className="mb-3 mt-3">
-                <label htmlFor="name" className="form-label">
-                  Amount Type:
-                </label>
-                <select
-                  class="form-control"
-                  name="amttype"
-                  onChange={handelChange}
-                >
-                  <option value="">Select Amount Type</option>
-
-                  <option value="amount_given_To_user">DEBIT</option>
-                  <option value="amount_given_By_user">CREDIT</option>
-                  <option value="NoAmount">NoAmount</option>
-                </select>
-              </div>
+         
               <div className="mb-3 mt-3">
                 <label htmlFor="name" className="form-label">
                   Cutomer Name :
@@ -306,6 +291,22 @@ if(!createdAt )
                     );
                   })}
                 </select> */}
+              </div>
+              <div className="mb-3 mt-3">
+                <label htmlFor="name" className="form-label">
+                  Amount Type:
+                </label>
+                <select
+                  class="form-control"
+                  name="amttype"
+                  onChange={handelChange}
+                >
+                  <option value="">Select Amount Type</option>
+
+                  <option value="amount_given_To_user">DEBIT</option>
+                  <option value="amount_given_By_user">CREDIT</option>
+                  <option value="NoAmount">NoAmount</option>
+                </select>
               </div>
               <div
                 className="loader-container "
