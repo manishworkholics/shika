@@ -28,9 +28,11 @@ const DailyEntry = () => {
   const formatDate2 = (dateString) => {
     const date = new Date(dateString);
     // Add one day
-    date?.setDate(date?.getDate() + 1);
+    // date?.setDate(date?.getDate() + 1);
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     return date?.toLocaleDateString('en-US', options);
+
+
   };
 
   if (!usertoken) {
@@ -88,7 +90,10 @@ const DailyEntry = () => {
                           </td>
                           <td>{val?.amount}</td>
                           <td>{val?.remark}</td>
-                          {/* {val?.date.split('T')[0]} */}
+                        
+                          {/* <td>  {val?.date?dateFormat(`${val?.date}`, "mmmm dS, yyyy"):"No Date Selected"}</td>
+                            <td> {dateFormat(`${val?.createdAt}`, "mmmm dS, yyyy")}</td> */}
+                          
                           <td> {val?.date? formatDate2(val?.date?.split('T')[0]):"No Date Selected"}</td>
                           <td> {formatDate2(val?.createdAt?.split('T')[0])}</td>
                         

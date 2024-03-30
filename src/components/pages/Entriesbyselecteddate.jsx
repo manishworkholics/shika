@@ -51,7 +51,7 @@ const Entriesbyselecteddate = () => {
   const formatDate2 = (dateString) => {
     const date = new Date(dateString);
     // Add one day
-    date.setDate(date.getDate() + 1);
+    // date.setDate(date.getDate() + 1);
     const options = { day: 'numeric', month: 'long', year: 'numeric' };
     return date.toLocaleDateString('en-US', options);
   };
