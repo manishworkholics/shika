@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from "react-router-dom";
 import loaderimg from "../../assets/loader.gif";
-
+import Logo from '../img/shikalogo.png'
 const Navbar = () => {
     const logout = () => {
         sessionStorage.clear();
@@ -13,7 +13,10 @@ const Navbar = () => {
                 <div className="container ">
                     <nav className="navbar navbar-expand-sm">
                         <div className="container-fluid">
-                            <Link className="navbar-brand" to="">Admin</Link>
+                            <Link className="navbar-brand" to="">
+                            <img src={Logo} alt=""  style={{width:'100px'}}/>
+       
+                            </Link>
                             <button className="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
                                 <span className="text-white"><i class="fa-solid fa-bars-staggered"></i></span>
                             </button>
